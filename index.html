@@ -142,7 +142,7 @@
   .nav-icon {
     background: none;
     border: none;
-    cursor: none;
+    cursor: pointer;
     padding: 8px;
     position: relative;
     transition: transform var(--transition);
@@ -549,7 +549,6 @@
     object-fit: cover;
     transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  .product-card:hover .product-img { transform: scale(1.05); }
   .prod-placeholder {
     width: 100%;
     height: 100%;
@@ -597,7 +596,7 @@
     font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
-    cursor: none;
+    cursor: pointer;
     transition: var(--transition);
   }
   .btn-add-cart:hover { background: var(--gray-800); }
@@ -605,7 +604,7 @@
     background: var(--white);
     border: none;
     padding: 12px;
-    cursor: none;
+    cursor: pointer;
     transition: var(--transition);
   }
   .btn-wishlist:hover { background: var(--gray-200); }
@@ -618,7 +617,7 @@
     width: 12px; height: 12px;
     border-radius: 50%;
     border: 1px solid var(--gray-200);
-    cursor: none;
+    cursor: pointer;
   }
   .product-info { padding: 0 4px; }
   .product-category {
@@ -744,91 +743,7 @@
     -webkit-text-stroke: 1px rgba(255,255,255,0.4);
   }
 
-  /* LOOKBOOK GRID */
-  .lookbook-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    gap: 4px;
-    height: 700px;
-  }
-  .look-item {
-    position: relative;
-    overflow: hidden;
-    background: var(--gray-100);
-    cursor: none;
-  }
-  .look-item:first-child {
-    grid-row: 1 / 3;
-  }
-  .look-placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: 60px;
-    color: var(--gray-200);
-    gap: 10px;
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  .look-item:hover .look-placeholder { transform: scale(1.05); }
-  .look-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 50%);
-    opacity: 0;
-    transition: opacity var(--transition);
-    display: flex;
-    align-items: flex-end;
-    padding: 30px;
-    z-index: 2;
-  }
-  .look-item:hover .look-overlay { opacity: 1; }
-  .look-tag {
-    font-family: var(--font-condensed);
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--white);
-    border-bottom: 1px solid rgba(255,255,255,0.4);
-    padding-bottom: 2px;
-    cursor: none;
-    text-decoration: none;
-  }
-
-  /* SIZE GUIDE TABLE */
-  .size-section {
-    background: var(--gray-100);
-    padding: 80px 60px;
-  }
-  .size-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-family: var(--font-condensed);
-    margin-top: 40px;
-  }
-  .size-table th {
-    background: var(--black);
-    color: var(--white);
-    padding: 14px 20px;
-    text-align: center;
-    font-size: 12px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-  }
-  .size-table td {
-    padding: 12px 20px;
-    text-align: center;
-    border-bottom: 1px solid var(--gray-200);
-    font-size: 14px;
-    background: var(--white);
-  }
-  .size-table tr:hover td { background: var(--gray-100); }
-
-  /* TESTIMONIALS */
+ /* TESTIMONIALS */
   .testimonials { background: var(--white); padding: 100px 60px; }
   .testimonials-grid {
     display: grid;
@@ -841,7 +756,7 @@
     padding: 40px;
     position: relative;
     transition: var(--transition);
-    cursor: none;
+    cursor: pointer;
   }
   .testimonial-card:hover { border-color: var(--black); transform: translateY(-4px); }
   .testimonial-quote {
@@ -858,18 +773,12 @@
     margin-bottom: 28px;
     font-weight: 300;
   }
-  .testimonial-author {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-  }
+  .testimonial-author { display: flex; align-items: center; gap: 14px; }
   .author-avatar {
     width: 44px; height: 44px;
     border-radius: 50%;
     background: var(--gray-200);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex; align-items: center; justify-content: center;
     font-size: 18px;
   }
   .author-name {
@@ -879,12 +788,9 @@
     letter-spacing: 1px;
     text-transform: uppercase;
   }
-  .author-location {
-    font-size: 12px;
-    color: var(--gray-400);
-  }
+  .author-location { font-size: 12px; color: var(--gray-400); }
   .testimonial-stars { color: var(--black); font-size: 12px; margin-bottom: 4px; }
-
+ 
   /* NEWSLETTER */
   .newsletter {
     background: var(--black);
@@ -945,7 +851,7 @@
     font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
-    cursor: none;
+    cursor: pointer;
     transition: var(--transition);
     white-space: nowrap;
   }
@@ -1262,7 +1168,7 @@
     font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
-    cursor: none;
+    cursor: pointer;
     transition: var(--transition);
     margin-bottom: 10px;
     display: flex;
@@ -1282,7 +1188,7 @@
     font-weight: 600;
     letter-spacing: 2px;
     text-transform: uppercase;
-    cursor: none;
+    cursor: pointer;
     transition: var(--transition);
   }
   .continue-shopping:hover { border-color: var(--black); }
@@ -1595,7 +1501,7 @@
     font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
-    cursor: none;
+    cursor: pointer;
     white-space: nowrap;
     transition: var(--transition);
   }
@@ -1650,7 +1556,7 @@
     font-weight: 700;
     letter-spacing: 3px;
     text-transform: uppercase;
-    cursor: none;
+    cursor: pointer;
     transition: var(--transition);
     margin-top: 20px;
     display: flex;
@@ -1984,7 +1890,7 @@
     <div class="feature-desc">100% organic cotton and recycled fabrics. Fashion that cares for the planet.</div>
   </div>
 </div>
-
+ 
 <!-- PROMO BANNER -->
 <div class="promo-banner">
   <div class="promo-big-number">50</div>
@@ -1994,61 +1900,6 @@
     <p style="color:var(--gray-400);font-size:15px;margin-bottom:36px;max-width:380px;font-weight:300;line-height:1.7;">Selected items from our previous collections. Premium quality at unbeatable prices. While stocks last.</p>
     <a href="#products" class="btn-primary"><span>Shop Sale</span> <span>→</span></a>
   </div>
-</div>
-
-<!-- LOOKBOOK -->
-<section class="section" id="lookbook" style="padding-bottom:0;">
-  <div class="section-header">
-    <div>
-      <div class="section-label">Style Inspiration</div>
-      <h2 class="section-title">LOOKBOOK</h2>
-    </div>
-    <a href="#" class="view-all">View All →</a>
-  </div>
-</section>
-<div class="lookbook-grid" style="margin: 0 60px 100px; gap:4px;">
-  <div class="look-item fade-up">
-    <div class="look-placeholder" style="height:100%;font-size:80px;background:#f0f0f0;">👕<br><span style="font-size:16px;font-family:var(--font-condensed);letter-spacing:2px;color:#aaa;margin-top:12px;display:block;">Street Style</span></div>
-    <div class="look-overlay"><a href="#" class="look-tag">Shop The Look →</a></div>
-  </div>
-  <div class="look-item fade-up" style="background:#e8e8e8;">
-    <div class="look-placeholder" style="height:100%;font-size:70px;">🧥<br><span style="font-size:14px;font-family:var(--font-condensed);letter-spacing:2px;color:#aaa;margin-top:10px;display:block;">Urban Wear</span></div>
-    <div class="look-overlay"><a href="#" class="look-tag">Shop The Look →</a></div>
-  </div>
-  <div class="look-item fade-up" style="background:#ececec;">
-    <div class="look-placeholder" style="height:100%;font-size:70px;">👖<br><span style="font-size:14px;font-family:var(--font-condensed);letter-spacing:2px;color:#aaa;margin-top:10px;display:block;">Casual Friday</span></div>
-    <div class="look-overlay"><a href="#" class="look-tag">Shop The Look →</a></div>
-  </div>
-</div>
-
-<!-- SIZE GUIDE -->
-<div class="size-section" id="about">
-  <div class="section-header">
-    <div>
-      <div class="section-label">Fit Guide</div>
-      <h2 class="section-title" style="font-size:clamp(36px,5vw,60px);">SIZE CHART</h2>
-    </div>
-  </div>
-  <table class="size-table">
-    <thead>
-      <tr>
-        <th>Size</th>
-        <th>Chest (in)</th>
-        <th>Waist (in)</th>
-        <th>Hip (in)</th>
-        <th>Trouser Length</th>
-        <th>Sleeve Length</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td><strong>XS</strong></td><td>33–34</td><td>26–27</td><td>35–36</td><td>28"</td><td>31"</td></tr>
-      <tr><td><strong>S</strong></td><td>35–36</td><td>28–29</td><td>37–38</td><td>29"</td><td>32"</td></tr>
-      <tr><td><strong>M</strong></td><td>37–38</td><td>30–31</td><td>39–40</td><td>30"</td><td>33"</td></tr>
-      <tr><td><strong>L</strong></td><td>39–41</td><td>32–33</td><td>41–42</td><td>31"</td><td>34"</td></tr>
-      <tr><td><strong>XL</strong></td><td>42–44</td><td>34–35</td><td>43–44</td><td>32"</td><td>35"</td></tr>
-      <tr><td><strong>XXL</strong></td><td>45–47</td><td>36–37</td><td>45–46</td><td>33"</td><td>36"</td></tr>
-    </tbody>
-  </table>
 </div>
 
 <!-- TESTIMONIALS -->
@@ -2542,8 +2393,7 @@ function renderProducts(filter = 'all') {
   grid.innerHTML = filtered.map(p => `
 <div class="product-card fade-up" id="prod-${p.id}" onclick="openProduct(${p.id})" style="cursor:pointer;">      <div class="product-img-wrap">
         ${p.badge ? `<div class="product-badge ${p.badge === 'Sale' ? 'sale' : ''}">${p.badge}</div>` : ''}
-        <img src="${p.img}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s cubic-bezier(0.4,0,0.2,1);" class="product-img" loading="lazy">
-        <div class="product-actions">
+<img src="${p.img}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;display:block;" class="product-img" loading="lazy">        <div class="product-actions">
 <button class="btn-add-cart" onclick="event.stopPropagation();addToCart(${p.id})">Add to Cart</button>          <button class="btn-wishlist">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
@@ -2969,6 +2819,16 @@ function openProduct(id) {
   document.querySelector('[onclick*="pdpDesc"]').style.borderBottom='2px solid #000';
   ['pdpDesc','pdpSpecs','pdpRevs'].forEach(id => document.getElementById(id).style.display = id==='pdpDesc'?'block':'none');
 
+ const related = products.filter(x => x.id !== id).slice(0, 4);
+  document.getElementById('relatedGrid').innerHTML = related.map(rp => `
+    <div onclick="openProduct(${rp.id})" style="cursor:pointer;">
+      <div style="aspect-ratio:3/4;overflow:hidden;background:#f5f5f5;margin-bottom:12px;position:relative;">
+        ${rp.badge ? `<div style="position:absolute;top:12px;left:12px;background:${rp.badge==='Sale'?'#cc0000':'#000'};color:#fff;font-family:var(--font-condensed);font-size:10px;font-weight:700;letter-spacing:2px;padding:4px 8px;z-index:2;">${rp.badge}</div>` : ''}
+        <img src="${rp.img}" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div style="font-family:var(--font-condensed);font-size:15px;font-weight:700;margin-bottom:4px;">${rp.name}</div>
+      <div style="font-family:var(--font-condensed);font-size:14px;color:${rp.oldPrice?'#cc0000':'#000'};">Rs. ${rp.price.toLocaleString()}</div>
+    </div>`).join('');
   document.getElementById('pdpPage').style.display = 'block';
   document.getElementById('pdpPage').scrollTop = 0;
   document.body.style.overflow = 'hidden';
@@ -3152,8 +3012,7 @@ updateCartUI();
         <span id="pdpBadgeEl" style="display:none;position:absolute;top:20px;left:20px;background:#000;color:#fff;font-family:var(--font-condensed);font-size:11px;font-weight:700;letter-spacing:2px;padding:6px 12px;z-index:2;"></span>
         <img id="pdpMainImg" src="" style="width:100%;height:100%;object-fit:cover;">
       </div>
-      <div id="pdpThumbs" style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;"></div>
-    </div>
+<div id="pdpThumbs" style="display:none;"></div>    </div>
     <!-- INFO -->
     <div>
       <div id="pdpCatLabel" style="font-family:var(--font-condensed);font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#999;margin-bottom:10px;"></div>
@@ -3200,6 +3059,12 @@ updateCartUI();
       <div id="pdpSpecs" style="display:none;"></div>
       <div id="pdpRevs" style="display:none;"></div>
     </div>
+  </div>
+
+  <div style="max-width:1200px;margin:0 auto;padding:0 40px 60px;">
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:48px;letter-spacing:2px;margin-bottom:8px;">RELATED PRODUCTS</div>
+    <div style="font-family:var(--font-condensed);font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#999;margin-bottom:36px;">You might also like</div>
+    <div id="relatedGrid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;"></div>
   </div>
 </div>
 </body>
