@@ -30,7 +30,7 @@
     background: var(--white);
     color: var(--black);
     overflow-x: hidden;
-    cursor: none;
+    cursor: auto;
   }
 
   /* CUSTOM CURSOR */
@@ -1805,10 +1805,6 @@
 </head>
 <body>
 
-<!-- CUSTOM CURSOR -->
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-
 <!-- TOAST -->
 <div class="toast" id="toast">
   <span>✓</span>
@@ -2569,13 +2565,11 @@ function renderProducts(filter = 'all') {
   const filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
 
   grid.innerHTML = filtered.map(p => `
-    <div class="product-card fade-up" id="prod-${p.id}">
-      <div class="product-img-wrap">
+<div class="product-card fade-up" id="prod-${p.id}" onclick="openProduct(${p.id})" style="cursor:pointer;">      <div class="product-img-wrap">
         ${p.badge ? `<div class="product-badge ${p.badge === 'Sale' ? 'sale' : ''}">${p.badge}</div>` : ''}
         <img src="${p.img}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s cubic-bezier(0.4,0,0.2,1);" class="product-img" loading="lazy">
         <div class="product-actions">
-          <button class="btn-add-cart" onclick="addToCart(${p.id})">Add to Cart</button>
-          <button class="btn-wishlist">
+<button class="btn-add-cart" onclick="event.stopPropagation();addToCart(${p.id})">Add to Cart</button>          <button class="btn-wishlist">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
         </div>
@@ -2926,7 +2920,119 @@ document.getElementById('checkoutModal').addEventListener('click', e => {
 // ESC KEY
 document.addEventListener('keydown', e => {
 if (e.key === 'Escape') { closeCart(); closeCheckout(); closeSearch(); closeWishlist(); }});
+// ─── PRODUCT DETAIL ───────────────────────────────────────────────────────────
+const productDetails = {
+  1: { imgs:['https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600','https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=600','https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=600','https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=600'], desc:'<p>The Essential Black Tee is built for everyday wear. 100% organic ring-spun cotton (200 GSM) — buttery soft and pre-shrunk so it never loses its shape.</p><ul style="padding-left:18px;margin-top:12px;"><li>100% Organic Cotton 200 GSM</li><li>Ribbed crewneck collar</li><li>Double-stitched hem & sleeves</li><li>Machine washable 30°C</li></ul>', specs:[['Material','100% Organic Cotton, 200 GSM'],['Fit','Regular Fit'],['Neck','Crew Neck'],['Care','Machine Wash 30°C'],['Origin','Made in Pakistan'],['SKU','STRK-TS-001']], reviews:['Ahmed K. — ★★★★★ — Amazing quality, wears great every day!','Zara M. — ★★★★★ — Super soft fabric and true to size.','Bilal H. — ★★★★☆ — Love it, delivery was fast too.'] },
+  2: { imgs:['https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=600','https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600','https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=600','https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=600'], desc:'<p>Bold graphic tee with water-based screen print that won\'t crack or fade. Heavyweight 220 GSM cotton with a slightly oversized boxy fit.</p><ul style="padding-left:18px;margin-top:12px;"><li>220 GSM Heavyweight Cotton</li><li>Water-based screen print</li><li>Oversized boxy fit</li><li>Machine wash cold</li></ul>', specs:[['Material','220 GSM Cotton'],['Fit','Oversized'],['Print','Water-based Screen'],['Care','Machine Wash Cold'],['SKU','STRK-TS-002']], reviews:['Usman T. — ★★★★★ — Best graphic tee I\'ve owned.','Sara N. — ★★★★☆ — Great print quality, no cracking after 10 washes.'] },
+  3: { imgs:['https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=600','https://images.unsplash.com/photo-1542272604-787c3835535d?w=600','https://images.unsplash.com/photo-1594938298603-c8148c4b4f4e?w=600','https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=600'], desc:'<p>Modern slim tapered chinos. 97% cotton / 3% elastane for comfort and stretch. Works for the office or a night out.</p><ul style="padding-left:18px;margin-top:12px;"><li>97% Cotton / 3% Elastane</li><li>Slim tapered leg</li><li>Mid rise, flat front</li><li>4 pockets</li></ul>', specs:[['Material','97% Cotton, 3% Elastane'],['Fit','Slim Tapered'],['Rise','Mid Rise'],['Care','Machine Wash 30°C'],['SKU','STRK-TR-001']], reviews:['Fatima R. — ★★★★★ — Perfect fit and so comfortable.','Hassan A. — ★★★★★ — Finally trousers that actually fit well in Pakistan!'] },
+  4: { imgs:['https://images.unsplash.com/photo-1542272604-787c3835535d?w=600','https://images.unsplash.com/photo-1594938298603-c8148c4b4f4e?w=600','https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=600','https://images.unsplash.com/photo-1542272604-787c3835535d?w=600'], desc:'<p>Six-pocket cargo pants built from ripstop cotton canvas. Tough, functional and street-ready.</p><ul style="padding-left:18px;margin-top:12px;"><li>100% Ripstop Cotton Canvas</li><li>6 reinforced pockets</li><li>Drawstring ankle</li><li>Relaxed seat, tapered below knee</li></ul>', specs:[['Material','Ripstop Cotton Canvas'],['Fit','Relaxed Cargo'],['Pockets','6'],['Care','Machine Wash Cold'],['SKU','STRK-TR-002']], reviews:['Omar B. — ★★★★★ — These are fire. Wore them every day this week.','Ali R. — ★★★★☆ — Great quality, pockets are deep and useful.'] },
+  5: { imgs:['https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=600','https://images.unsplash.com/photo-1607345366928-199ea26cfe3e?w=600','https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=600','https://images.unsplash.com/photo-1607345366928-199ea26cfe3e?w=600'], desc:'<p>Classic Oxford weave button-down. Dress it up or wear it open over a tee — it works both ways.</p><ul style="padding-left:18px;margin-top:12px;"><li>100% Oxford Weave Cotton</li><li>Button-down collar</li><li>Chest pocket</li><li>Regular fit — tuck or untuck</li></ul>', specs:[['Material','Oxford Weave Cotton'],['Fit','Regular'],['Collar','Button-Down'],['Care','Machine Wash 40°C'],['SKU','STRK-FS-001']], reviews:['Nadia S. — ★★★★★ — My husband wears this every Friday, absolute quality.','Imran K. — ★★★★★ — Perfect for work and casual both.'] },
+  6: { imgs:['https://images.unsplash.com/photo-1607345366928-199ea26cfe3e?w=600','https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=600','https://images.unsplash.com/photo-1607345366928-199ea26cfe3e?w=600','https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=600'], desc:'<p>Heavyweight military-inspired overshirt with 4 utility pockets. Wear it as a shirt or light jacket.</p><ul style="padding-left:18px;margin-top:12px;"><li>280 GSM Cotton Twill</li><li>4 button pockets</li><li>Military collar</li><li>Relaxed oversized fit</li></ul>', specs:[['Material','280 GSM Cotton Twill'],['Fit','Relaxed / Overshirt'],['Pockets','4'],['Care','Machine Wash Cold'],['SKU','STRK-FS-002']], reviews:['Sana M. — ★★★★★ — Looks incredible, super premium feel.','Kashif A. — ★★★★☆ — Heavy fabric, exactly what I wanted.'] },
+  7: { imgs:['https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=600','https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600','https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=600','https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=600'], desc:'<p>Dropped shoulder oversized tee with extended body length. Garment washed for a soft worn-in feel from day one.</p><ul style="padding-left:18px;margin-top:12px;"><li>190 GSM Combed Cotton</li><li>Drop shoulder construction</li><li>Extended length</li><li>Garment washed</li></ul>', specs:[['Material','190 GSM Combed Cotton'],['Fit','Oversized Drop Shoulder'],['Neck','Ribbed Crew'],['Care','Machine Wash 30°C'],['SKU','STRK-TS-003']], reviews:['Hamza T. — ★★★★★ — Most comfortable shirt I own.','Rida F. — ★★★★★ — The oversized fit is exactly right, not too baggy.'] },
+  8: { imgs:['https://images.unsplash.com/photo-1594938298603-c8148c4b4f4e?w=600','https://images.unsplash.com/photo-1542272604-787c3835535d?w=600','https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=600','https://images.unsplash.com/photo-1594938298603-c8148c4b4f4e?w=600'], desc:'<p>Athletic tapered track pants with French terry cotton blend. Relaxed waist, sharp taper below knee, ribbed cuffs.</p><ul style="padding-left:18px;margin-top:12px;"><li>80% Cotton / 20% Polyester French Terry</li><li>Elasticated drawstring waist</li><li>Zip side pockets</li><li>Ribbed ankle cuffs</li></ul>', specs:[['Material','80% Cotton / 20% Polyester'],['Fit','Tapered Athletic'],['Waist','Elasticated + Drawstring'],['Care','Machine Wash 30°C'],['SKU','STRK-TR-003']], reviews:['Asad M. — ★★★★★ — Wear these to the gym and on the street both.','Hina K. — ★★★★☆ — Very comfy, great quality for the price.'] },
+};
 
+let pdpCurrentId = null;
+let pdpQty = 1;
+let pdpSelectedSize = null;
+
+function openProduct(id) {
+  const p = products.find(x => x.id === id);
+  const d = productDetails[id];
+  if (!p || !d) return;
+  pdpCurrentId = id;
+  pdpQty = 1;
+  pdpSelectedSize = null;
+
+  document.getElementById('pdpBreadName').textContent = p.name;
+  document.getElementById('pdpCatLabel').textContent = p.category==='tshirt'?'T-Shirts':p.category==='trouser'?'Trousers':'Full Sleeves';
+  document.getElementById('pdpNameEl').textContent = p.name;
+  document.getElementById('pdpStarsEl').innerHTML = `<span style="color:#000;">${'★'.repeat(Math.floor(p.rating))}</span> <span style="font-family:var(--font-condensed);font-size:12px;color:#999;">(${p.reviews} reviews)</span>`;
+  document.getElementById('pdpMainImg').src = d.imgs[0];
+  document.getElementById('pdpQtyVal').textContent = '1';
+
+  // Badge
+  const badge = document.getElementById('pdpBadgeEl');
+  if (p.badge) { badge.textContent = p.badge; badge.style.display='block'; badge.style.background = p.badge==='Sale' ? '#cc0000' : '#000'; }
+  else badge.style.display = 'none';
+
+  // Price
+  document.getElementById('pdpPriceRow').innerHTML = p.oldPrice
+    ? `<span style="font-family:var(--font-condensed);font-size:30px;font-weight:700;color:#cc0000;">Rs. ${p.price.toLocaleString()}</span><span style="font-family:var(--font-condensed);font-size:20px;color:#999;text-decoration:line-through;">Rs. ${p.oldPrice.toLocaleString()}</span><span style="font-family:var(--font-condensed);font-size:12px;font-weight:700;background:#fff0f0;color:#cc0000;padding:4px 10px;">${Math.round((p.oldPrice-p.price)/p.oldPrice*100)}% OFF</span>`
+    : `<span style="font-family:var(--font-condensed);font-size:30px;font-weight:700;">Rs. ${p.price.toLocaleString()}</span>`;
+
+  // Thumbs
+  document.getElementById('pdpThumbs').innerHTML = d.imgs.map((src,i) => `
+    <div onclick="document.getElementById('pdpMainImg').src='${src}';document.querySelectorAll('.pdp-thumb-btn').forEach(t=>t.style.border='2px solid transparent');this.style.border='2px solid #000';" class="pdp-thumb-btn" style="aspect-ratio:1;overflow:hidden;background:#f5f5f5;cursor:pointer;border:${i===0?'2px solid #000':'2px solid transparent'};">
+      <img src="${src}" style="width:100%;height:100%;object-fit:cover;">
+    </div>`).join('');
+
+  // Colors
+  document.getElementById('pdpColorsEl').innerHTML = p.colors.map((c,i) => `
+    <button onclick="this.parentNode.querySelectorAll('.pdp-cbtn').forEach(b=>b.style.border='3px solid transparent');this.style.border='3px solid #000';" class="pdp-cbtn" style="width:32px;height:32px;border-radius:50%;background:${c};border:${i===0?'3px solid #000':'3px solid transparent'};cursor:pointer;"></button>`).join('');
+
+  // Sizes
+  document.getElementById('pdpSizesEl').innerHTML = p.sizes.map(s => `
+    <button onclick="pdpSelectSize('${s}',this)" style="min-width:52px;height:52px;border:1.5px solid #e8e8e8;background:none;cursor:pointer;font-family:var(--font-condensed);font-size:13px;font-weight:600;padding:0 8px;transition:all 0.2s;">${s}</button>`).join('');
+
+  // Desc
+  document.getElementById('pdpDesc').innerHTML = d.desc;
+
+  // Specs
+  document.getElementById('pdpSpecs').innerHTML = `<table style="width:100%;border-collapse:collapse;">${d.specs.map(([k,v])=>`<tr style="border-bottom:1px solid #e8e8e8;"><td style="padding:12px 0;font-family:var(--font-condensed);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#999;width:40%;">${k}</td><td style="padding:12px 0;font-family:var(--font-condensed);font-size:13px;">${v}</td></tr>`).join('')}</table>`;
+
+  // Reviews
+  document.getElementById('pdpRevs').innerHTML = d.reviews.map(r => {
+    const [name, stars, text] = r.split(' — ');
+    return `<div style="padding:16px 0;border-bottom:1px solid #e8e8e8;"><div style="font-family:var(--font-condensed);font-size:12px;margin-bottom:4px;">${stars}</div><div style="font-family:var(--font-condensed);font-size:13px;font-weight:700;text-transform:uppercase;margin-bottom:6px;">${name}</div><div style="font-size:13px;color:#555;">${text}</div></div>`;
+  }).join('');
+
+  // Reset tabs
+  document.querySelectorAll('[onclick*="pdpTab"]').forEach(b => { b.style.color='#999'; b.style.borderBottom='2px solid transparent'; });
+  document.querySelector('[onclick*="pdpDesc"]').style.color='#000';
+  document.querySelector('[onclick*="pdpDesc"]').style.borderBottom='2px solid #000';
+  ['pdpDesc','pdpSpecs','pdpRevs'].forEach(id => document.getElementById(id).style.display = id==='pdpDesc'?'block':'none');
+
+  document.getElementById('pdpPage').style.display = 'block';
+  document.getElementById('pdpPage').scrollTop = 0;
+  document.body.style.overflow = 'hidden';
+}
+
+function closeProduct() {
+  document.getElementById('pdpPage').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+function pdpSelectSize(size, el) {
+  pdpSelectedSize = size;
+  document.getElementById('pdpSizeErr').style.display = 'none';
+  document.querySelectorAll('#pdpSizesEl button').forEach(b => { b.style.background='none'; b.style.color='#000'; b.style.borderColor='#e8e8e8'; });
+  el.style.background = '#000'; el.style.color = '#fff'; el.style.borderColor = '#000';
+}
+
+function pdpQtyChange(d) {
+  pdpQty = Math.max(1, Math.min(10, pdpQty + d));
+  document.getElementById('pdpQtyVal').textContent = pdpQty;
+}
+
+function pdpAddCart(buyNow = false) {
+  if (!pdpSelectedSize) { document.getElementById('pdpSizeErr').style.display = 'block'; return; }
+  const p = products.find(x => x.id === pdpCurrentId);
+  const existing = cart.find(i => i.id === p.id && i.size === pdpSelectedSize);
+  if (existing) existing.qty += pdpQty;
+  else cart.push({...p, qty: pdpQty, size: pdpSelectedSize});
+  updateCartUI();
+  showToast(`✓ ${p.name} (${pdpSelectedSize}) added!`);
+  if (buyNow) { closeProduct(); setTimeout(openCheckout, 300); }
+  else { closeProduct(); setTimeout(openCart, 300); }
+}
+
+function pdpTab(btn, tabId) {
+  document.querySelectorAll('[onclick*="pdpTab"]').forEach(b => { b.style.color='#999'; b.style.borderBottom='2px solid transparent'; });
+  btn.style.color = '#000'; btn.style.borderBottom = '2px solid #000';
+  ['pdpDesc','pdpSpecs','pdpRevs'].forEach(id => document.getElementById(id).style.display = id===tabId ? 'block' : 'none');
+}
+ 
 // INIT
 // ─── SEARCH ───────────────────────────────────────────────────────────────────
 function openSearch() {
@@ -3059,6 +3165,73 @@ addHoverListeners();
     <div class="wish-empty" style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:16px;color:#999;font-family:var(--font-condensed);font-size:13px;letter-spacing:2px;text-transform:uppercase;">
       <div style="font-size:50px;opacity:0.2;">♡</div>
       <div>Your wishlist is empty</div>
+    </div>
+  </div>
+</div>
+<!-- PRODUCT DETAIL PAGE -->
+<div id="pdpPage" style="display:none;position:fixed;inset:0;background:#fff;z-index:8000;overflow-y:auto;">
+  <div style="position:sticky;top:0;background:#fff;border-bottom:1px solid #e8e8e8;padding:16px 40px;display:flex;align-items:center;justify-content:space-between;z-index:10;">
+    <div style="font-family:var(--font-condensed);font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#999;">
+      <span onclick="closeProduct()" style="cursor:pointer;color:#999;">Home</span> / 
+      <span onclick="closeProduct()" style="cursor:pointer;color:#999;">Shop</span> / 
+      <span id="pdpBreadName" style="color:#000;font-weight:700;"></span>
+    </div>
+    <button onclick="closeProduct()" style="background:none;border:none;cursor:pointer;font-family:var(--font-condensed);font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;display:flex;align-items:center;gap:8px;">✕ CLOSE</button>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;max-width:1200px;margin:0 auto;padding:50px 40px;gap:70px;">
+    <!-- IMAGES -->
+    <div>
+      <div style="aspect-ratio:4/5;overflow:hidden;background:#f5f5f5;margin-bottom:12px;position:relative;">
+        <span id="pdpBadgeEl" style="display:none;position:absolute;top:20px;left:20px;background:#000;color:#fff;font-family:var(--font-condensed);font-size:11px;font-weight:700;letter-spacing:2px;padding:6px 12px;z-index:2;"></span>
+        <img id="pdpMainImg" src="" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div id="pdpThumbs" style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;"></div>
+    </div>
+    <!-- INFO -->
+    <div>
+      <div id="pdpCatLabel" style="font-family:var(--font-condensed);font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#999;margin-bottom:10px;"></div>
+      <h1 id="pdpNameEl" style="font-family:'Bebas Neue',sans-serif;font-size:52px;letter-spacing:1px;line-height:1;margin-bottom:14px;"></h1>
+      <div id="pdpStarsEl" style="font-size:14px;margin-bottom:20px;"></div>
+      <div id="pdpPriceRow" style="display:flex;align-items:center;gap:16px;margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid #e8e8e8;"></div>
+
+      <div style="font-family:var(--font-condensed);font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:12px;">COLOR</div>
+      <div id="pdpColorsEl" style="display:flex;gap:10px;margin-bottom:28px;"></div>
+
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+        <div style="font-family:var(--font-condensed);font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;">SELECT SIZE</div>
+      </div>
+      <div id="pdpSizesEl" style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px;"></div>
+      <div id="pdpSizeErr" style="display:none;color:#cc0000;font-family:var(--font-condensed);font-size:11px;letter-spacing:1px;margin-bottom:12px;">⚠ Please select a size</div>
+
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;margin-top:20px;">
+        <div style="font-family:var(--font-condensed);font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;">QTY</div>
+        <div style="display:flex;align-items:center;border:1.5px solid #e8e8e8;">
+          <button onclick="pdpQtyChange(-1)" style="width:44px;height:44px;background:none;border:none;cursor:pointer;font-size:18px;">−</button>
+          <div id="pdpQtyVal" style="width:48px;text-align:center;font-family:var(--font-condensed);font-size:16px;font-weight:700;border-left:1.5px solid #e8e8e8;border-right:1.5px solid #e8e8e8;line-height:44px;">1</div>
+          <button onclick="pdpQtyChange(1)" style="width:44px;height:44px;background:none;border:none;cursor:pointer;font-size:18px;">+</button>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:10px;margin-bottom:12px;">
+        <button onclick="pdpAddCart()" style="flex:1;background:#000;color:#fff;border:none;padding:17px;font-family:var(--font-condensed);font-size:13px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;cursor:pointer;">Add to Cart</button>
+        <button onclick="pdpAddCart(true)" style="flex:1;background:none;color:#000;border:1.5px solid #000;padding:17px;font-family:var(--font-condensed);font-size:13px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;cursor:pointer;">Buy Now</button>
+      </div>
+
+      <div style="background:#f5f5f5;padding:18px 20px;margin-bottom:28px;display:flex;flex-direction:column;gap:10px;">
+        <div style="font-family:var(--font-condensed);font-size:12px;letter-spacing:1px;color:#555;">🚚 <strong>Free Delivery</strong> on orders over Rs. 3,000</div>
+        <div style="font-family:var(--font-condensed);font-size:12px;letter-spacing:1px;color:#555;">📦 <strong>Cash on Delivery</strong> available nationwide</div>
+        <div style="font-family:var(--font-condensed);font-size:12px;letter-spacing:1px;color:#555;">↩ <strong>30-Day Returns</strong> — hassle free</div>
+      </div>
+
+      <!-- TABS -->
+      <div style="border-bottom:1px solid #e8e8e8;display:flex;margin-bottom:24px;">
+        <button onclick="pdpTab(this,'pdpDesc')" class="pdp-tab-active" style="background:none;border:none;border-bottom:2px solid #000;padding:14px 20px;font-family:var(--font-condensed);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;color:#000;margin-bottom:-1px;">Description</button>
+        <button onclick="pdpTab(this,'pdpSpecs')" style="background:none;border:none;border-bottom:2px solid transparent;padding:14px 20px;font-family:var(--font-condensed);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;color:#999;margin-bottom:-1px;">Details</button>
+        <button onclick="pdpTab(this,'pdpRevs')" style="background:none;border:none;border-bottom:2px solid transparent;padding:14px 20px;font-family:var(--font-condensed);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;color:#999;margin-bottom:-1px;">Reviews</button>
+      </div>
+      <div id="pdpDesc" style="font-size:14px;line-height:1.8;color:#555;font-weight:300;"></div>
+      <div id="pdpSpecs" style="display:none;"></div>
+      <div id="pdpRevs" style="display:none;"></div>
     </div>
   </div>
 </div>
