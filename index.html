@@ -2522,31 +2522,6 @@ let cart = [];
 let currentFilter = 'all';
 let couponApplied = false;
 
-// ─── CUSTOM CURSOR ────────────────────────────────────────────────────────────
-const cursor = document.getElementById('cursor');
-const ring = document.getElementById('cursorRing');
-let cursorX = 0, cursorY = 0, ringX = 0, ringY = 0;
-
-document.addEventListener('mousemove', e => {
-  cursorX = e.clientX; cursorY = e.clientY;
-  cursor.style.left = cursorX + 'px';
-  cursor.style.top = cursorY + 'px';
-});
-
-function animateRing() {
-  ringX += (cursorX - ringX) * 0.12;
-  ringY += (cursorY - ringY) * 0.12;
-  ring.style.left = ringX + 'px';
-  ring.style.top = ringY + 'px';
-  requestAnimationFrame(animateRing);
-}
-animateRing();
-
-document.querySelectorAll('a, button, .product-card, .category-card').forEach(el => {
-  el.addEventListener('mouseenter', () => { cursor.classList.add('hover'); ring.classList.add('hover'); });
-  el.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); ring.classList.remove('hover'); });
-});
-
 // ─── SCROLL EFFECTS ───────────────────────────────────────────────────────────
 window.addEventListener('scroll', () => {
   const navbar = document.getElementById('navbar');
@@ -2919,8 +2894,10 @@ document.getElementById('checkoutModal').addEventListener('click', e => {
 
 // ESC KEY
 document.addEventListener('keydown', e => {
-if (e.key === 'Escape') { closeCart(); closeCheckout(); closeSearch(); closeWishlist(); closeProduct(); }// ─── PRODUCT DETAIL ───────────────────────────────────────────────────────────
-const productDetails = {
+if (e.key === 'Escape') { closeCart(); closeCheckout(); closeSearch(); closeWishlist(); closeProduct(); }
+});
+
+// ─── PRODUCT DETAIL ───────────────────────────────────────────────────────────const productDetails = {
   1: { imgs:['https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600','https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=600','https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=600','https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=600'], desc:'<p>The Essential Black Tee is built for everyday wear. 100% organic ring-spun cotton (200 GSM) — buttery soft and pre-shrunk so it never loses its shape.</p><ul style="padding-left:18px;margin-top:12px;"><li>100% Organic Cotton 200 GSM</li><li>Ribbed crewneck collar</li><li>Double-stitched hem & sleeves</li><li>Machine washable 30°C</li></ul>', specs:[['Material','100% Organic Cotton, 200 GSM'],['Fit','Regular Fit'],['Neck','Crew Neck'],['Care','Machine Wash 30°C'],['Origin','Made in Pakistan'],['SKU','STRK-TS-001']], reviews:['Ahmed K. — ★★★★★ — Amazing quality, wears great every day!','Zara M. — ★★★★★ — Super soft fabric and true to size.','Bilal H. — ★★★★☆ — Love it, delivery was fast too.'] },
   2: { imgs:['https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=600','https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600','https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=600','https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=600'], desc:'<p>Bold graphic tee with water-based screen print that won\'t crack or fade. Heavyweight 220 GSM cotton with a slightly oversized boxy fit.</p><ul style="padding-left:18px;margin-top:12px;"><li>220 GSM Heavyweight Cotton</li><li>Water-based screen print</li><li>Oversized boxy fit</li><li>Machine wash cold</li></ul>', specs:[['Material','220 GSM Cotton'],['Fit','Oversized'],['Print','Water-based Screen'],['Care','Machine Wash Cold'],['SKU','STRK-TS-002']], reviews:['Usman T. — ★★★★★ — Best graphic tee I\'ve owned.','Sara N. — ★★★★☆ — Great print quality, no cracking after 10 washes.'] },
   3: { imgs:['https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=600','https://images.unsplash.com/photo-1542272604-787c3835535d?w=600','https://images.unsplash.com/photo-1594938298603-c8148c4b4f4e?w=600','https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=600'], desc:'<p>Modern slim tapered chinos. 97% cotton / 3% elastane for comfort and stretch. Works for the office or a night out.</p><ul style="padding-left:18px;margin-top:12px;"><li>97% Cotton / 3% Elastane</li><li>Slim tapered leg</li><li>Mid rise, flat front</li><li>4 pockets</li></ul>', specs:[['Material','97% Cotton, 3% Elastane'],['Fit','Slim Tapered'],['Rise','Mid Rise'],['Care','Machine Wash 30°C'],['SKU','STRK-TR-001']], reviews:['Fatima R. — ★★★★★ — Perfect fit and so comfortable.','Hassan A. — ★★★★★ — Finally trousers that actually fit well in Pakistan!'] },
@@ -3115,17 +3092,8 @@ function updateWishlistUI() {
 // INIT
 renderProducts();
 updateCartUI();
-
-// ADD HOVER LISTENERS DYNAMICALLY
-function addHoverListeners() {
-  document.querySelectorAll('a, button, .product-card, .category-card, .payment-method, .testimonial-card').forEach(el => {
-    el.addEventListener('mouseenter', () => { cursor.classList.add('hover'); ring.classList.add('hover'); });
-    el.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); ring.classList.remove('hover'); });
-  });
-}
-setInterval(addHoverListeners, 1000);
-addHoverListeners();
 </script>
+ 
 <!-- SEARCH OVERLAY -->
 <div id="searchOverlay" style="display:none;position:fixed;inset:0;background:rgba(255,255,255,0.98);z-index:9800;flex-direction:column;align-items:center;padding:60px 40px 40px;">
   <button onclick="closeSearch()" style="position:absolute;top:20px;right:30px;background:none;border:none;font-size:28px;cursor:none;">✕</button>
