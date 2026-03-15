@@ -2444,8 +2444,7 @@ function closeCheckout() {
 }
 
 function resetCheckout() {
-  document.getElementById('checkoutBody').style.display = 'flex';
-  document.getElementById('successScreen').classList.remove('show');
+document.getElementById('checkoutBody').style.display = '';  document.getElementById('successScreen').classList.remove('show');
   goToShipping();
 }
 
