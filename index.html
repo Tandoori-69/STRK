@@ -2203,81 +2203,13 @@
     <div style="font-family:var(--font-condensed);font-size:14px;font-weight:700;letter-spacing:1px;">CASH ON DELIVERY</div>
     <div style="font-size:12px;color:#999;margin-top:4px;">Pay when your order arrives at your door.</div>
   </div>
+  </div>
+  <div style="display:flex;gap:12px;margin-top:24px;">
+    <button onclick="backToShipping()" style="flex:0 0 auto;background:none;border:1px solid var(--gray-200);padding:16px 20px;font-family:var(--font-condensed);font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.borderColor='var(--black)'" onmouseout="this.style.borderColor='var(--gray-200)'">← Back</button>
+    <button class="place-order-btn" onclick="goToReview()" style="flex:1;margin-top:0;">Review Order →</button>
+  </div>
 </div>
-              </label>
-            </div>
-
-            <!-- CARD PAYMENT FIELDS -->
-            <div id="cardFields">
-              <div class="form-section-title">Card Details</div>
-              <div class="form-group card-number-wrap">
-                <label class="form-label">Card Number *</label>
-                <input type="text" class="form-input" id="cardNumber" placeholder="0000  0000  0000  0000" maxlength="19" oninput="formatCardNumber(this)">
-                <div class="card-type-badge" id="cardTypeBadge">CARD</div>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Cardholder Name *</label>
-                <input type="text" class="form-input" id="cardName" placeholder="John Doe">
-              </div>
-              <div class="form-row">
-                <div class="form-group">
-                  <label class="form-label">Expiry Date *</label>
-                  <input type="text" class="form-input" id="cardExpiry" placeholder="MM / YY" maxlength="7" oninput="formatExpiry(this)">
-                </div>
-                <div class="form-group card-field-wrap">
-                  <label class="form-label">Security Code *</label>
-                  <input type="text" class="form-input" id="cardCVV" placeholder="CVV" maxlength="4" oninput="this.value=this.value.replace(/\D/g,'')">
-                  <div class="card-field-icon">🔒</div>
-                </div>
-              </div>
-              <div style="background:var(--gray-100);padding:14px 16px;margin-bottom:16px;">
-                <div style="display:flex;align-items:center;gap:10px;font-family:var(--font-condensed);font-size:11px;letter-spacing:1px;color:var(--gray-600);">
-                  <span>🔒</span> Your card information is encrypted with 256-bit SSL. We never store your card details.
-                </div>
-              </div>
-              <div style="display:flex;gap:8px;align-items:center;margin-bottom:8px;">
-                <div style="font-family:var(--font-condensed);font-size:10px;letter-spacing:1px;color:var(--gray-400);">We Accept:</div>
-                <div class="payment-icon visa">VISA</div>
-                <div class="payment-icon mc">MC</div>
-                <div class="payment-icon amex">AMEX</div>
-              </div>
-            </div>
-
-            <!-- PAYPAL -->
-            <div id="paypalFields" style="display:none;">
-              <div style="background:var(--gray-100);border:1px solid var(--gray-200);padding:40px;text-align:center;">
-                <div style="font-size:48px;margin-bottom:16px;">🅿️</div>
-                <div style="font-family:var(--font-condensed);font-size:15px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;">PayPal Checkout</div>
-                <p style="font-size:13px;color:var(--gray-400);line-height:1.6;">You will be redirected to PayPal to complete your payment securely. Your order will be confirmed immediately after.</p>
-              </div>
-            </div>
-
-            <!-- APPLE PAY -->
-            <div id="appleFields" style="display:none;">
-              <div style="background:var(--black);border:1px solid var(--gray-800);padding:40px;text-align:center;">
-                <div style="font-size:48px;margin-bottom:16px;">🍎</div>
-                <div style="font-family:var(--font-condensed);font-size:15px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;color:white;">Apple Pay</div>
-                <p style="font-size:13px;color:var(--gray-400);line-height:1.6;">Use Touch ID or Face ID to complete your purchase. Fast, simple, and secure.</p>
-              </div>
-            </div>
-
-            <!-- GOOGLE PAY -->
-            <div id="googleFields" style="display:none;">
-              <div style="background:var(--gray-100);border:1px solid var(--gray-200);padding:40px;text-align:center;">
-                <div style="font-size:48px;margin-bottom:16px;">G</div>
-                <div style="font-family:var(--font-condensed);font-size:15px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;">Google Pay</div>
-                <p style="font-size:13px;color:var(--gray-400);line-height:1.6;">Pay with your Google account in a single tap. No card details needed.</p>
-              </div>
-            </div>
-
-            <div style="display:flex;gap:12px;margin-top:24px;">
-              <button onclick="backToShipping()" style="flex:0 0 auto;background:none;border:1px solid var(--gray-200);padding:16px 20px;font-family:var(--font-condensed);font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;cursor: pointer;transition:all 0.2s;" onmouseover="this.style.borderColor='var(--black)'" onmouseout="this.style.borderColor='var(--gray-200)'">← Back</button>
-              <button class="place-order-btn" onclick="goToReview()" style="flex:1;margin-top:0;">
-                Review Order →
-              </button>
-            </div>
-          </div>
-
+         
           <!-- STEP 3: REVIEW (hidden initially) -->
           <div id="reviewForm" style="display:none;">
             <div class="form-section-title">Order Review</div>
@@ -2606,17 +2538,7 @@ function backToShipping() {
 }
 
 function goToReview() {
-  const selectedPayment = document.querySelector('input[name="payment"]:checked')?.value;
-  if (selectedPayment === 'card') {
-    const cn = document.getElementById('cardNumber').value.replace(/\s/g,'');
-    const cname = document.getElementById('cardName').value.trim();
-    const exp = document.getElementById('cardExpiry').value.trim();
-    const cvv = document.getElementById('cardCVV').value.trim();
-    if (cn.length < 16 || !cname || exp.length < 5 || cvv.length < 3) {
-      showToast('Please enter complete card details');
-      return;
-    }
-  }
+ const selectedPayment = 'cod';
   const fn = document.getElementById('firstName').value;
   const ln = document.getElementById('lastName').value;
   const addr = document.getElementById('address').value;
@@ -2632,17 +2554,7 @@ function goToReview() {
     ${country || ''}
   `;
 
-  const pm = selectedPayment;
-  if (pm === 'card') {
-    const cn = document.getElementById('cardNumber').value;
-    document.getElementById('reviewPayment').innerHTML = `<strong>💳 Credit/Debit Card</strong><br><span style="color:var(--gray-400);">Ending in ${cn.slice(-4)}</span>`;
-  } else if (pm === 'paypal') {
-    document.getElementById('reviewPayment').innerHTML = '<strong>🅿️ PayPal</strong>';
-  } else if (pm === 'apple') {
-    document.getElementById('reviewPayment').innerHTML = '<strong>🍎 Apple Pay</strong>';
-  } else {
-    document.getElementById('reviewPayment').innerHTML = '<strong>G Google Pay</strong>';
-  }
+ document.getElementById('reviewPayment').innerHTML = '<strong>💵 Cash on Delivery</strong>';
 
   document.getElementById('paymentForm').style.display = 'none';
   document.getElementById('reviewForm').style.display = '';
