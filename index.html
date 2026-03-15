@@ -1729,10 +1729,10 @@
   <a href="#" class="nav-logo">TROJAN</a>
   <ul class="nav-links">
     <li><a href="#categories">Collections</a></li>
-    <li><a href="#tshirts">T-Shirts</a></li>
-    <li><a href="#trousers">Trousers</a></li>
-    <li><a href="#sleeves">Full Sleeves</a></li>
-    <li><a href="#about">About</a></li>
+    <li><a href="#products" onclick="filterProducts('tshirt')">T-Shirts</a></li>
+<li><a href="#products" onclick="filterProducts('trouser')">Trousers</a></li>
+<li><a href="#products" onclick="filterProducts('sleeve')">Full Sleeves</a></li>
+<li><a href="#footer">About</a></li>
   </ul>
   <div class="nav-actions">
     <button class="btn-search nav-icon" aria-label="Search" onclick="openSearch()">
@@ -1980,8 +1980,9 @@
 </div>
 
 <!-- FOOTER -->
-<footer>
-  <div class="footer-grid">
+ <footer id="footer">
+
+ <div class="footer-grid">
     <div>
       <div class="footer-brand-logo">TROJAN<span>®</span>
 </div>
