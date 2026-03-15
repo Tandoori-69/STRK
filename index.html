@@ -2064,8 +2064,7 @@
   </div>
   <div class="cart-footer" id="cartFooter" style="display:none;">
     <div class="cart-subtotal"><span>Subtotal</span><span id="cartSubtotal">$0.00</span></div>
-    <div class="cart-subtotal"><span>Shipping</span><span id="cartShipping">Free</span></div>
-    <div class="cart-subtotal"><span>Discount</span><span id="cartDiscount" style="color:#cc0000;">-$0.00</span></div>
+<div class="cart-subtotal"><span>Shipping</span><span style="color:#cc0000;font-size:11px;">To be confirmed via WhatsApp/Email</span></div>    <div class="cart-subtotal"><span>Discount</span><span id="cartDiscount" style="color:#cc0000;">-$0.00</span></div>
     <div class="cart-total"><span>Total</span><span id="cartTotal">$0.00</span></div>
     <button class="checkout-btn" onclick="openCheckout()">
       <span>🔒</span> Checkout Securely
@@ -2198,26 +2197,13 @@
           <!-- STEP 2: PAYMENT (hidden initially) -->
           <div id="paymentForm" style="display:none;">
             <div class="form-section-title">Select Payment Method</div>
-            <div class="payment-methods">
-              <label class="payment-method selected" id="pm-card" onclick="selectPayment('card')">
-                <input type="radio" name="payment" value="card" checked>
-                <div class="payment-method-icon">💳</div>
-                <div class="payment-method-name">Card</div>
-              </label>
-              <label class="payment-method" id="pm-paypal" onclick="selectPayment('paypal')">
-                <input type="radio" name="payment" value="paypal">
-                <div class="payment-method-icon">🅿️</div>
-                <div class="payment-method-name">PayPal</div>
-              </label>
-              <label class="payment-method" id="pm-apple" onclick="selectPayment('apple')">
-                <input type="radio" name="payment" value="apple">
-                <div class="payment-method-icon">🍎</div>
-                <div class="payment-method-name">Apple Pay</div>
-              </label>
-              <label class="payment-method" id="pm-google" onclick="selectPayment('google')">
-                <input type="radio" name="payment" value="google">
-                <div class="payment-method-icon">G</div>
-                <div class="payment-method-name">Google Pay</div>
+            <div style="border:2px solid #000;padding:20px;display:flex;align-items:center;gap:14px;margin-bottom:24px;">
+  <span style="font-size:24px;">💵</span>
+  <div>
+    <div style="font-family:var(--font-condensed);font-size:14px;font-weight:700;letter-spacing:1px;">CASH ON DELIVERY</div>
+    <div style="font-size:12px;color:#999;margin-top:4px;">Pay when your order arrives at your door.</div>
+  </div>
+</div>
               </label>
             </div>
 
@@ -2329,8 +2315,7 @@
               <button class="coupon-btn" onclick="applyCoupon()">Apply</button>
             </div>
             <div class="order-line"><span>Subtotal</span><span id="summarySubtotal">$0.00</span></div>
-            <div class="order-line"><span>Shipping</span><span id="summaryShipping">Free</span></div>
-            <div class="order-line" id="discountLine" style="display:none;color:#cc0000;"><span>Discount (TROJAN20)</span><span id="summaryDiscount">-$0.00</span></div>
+<div class="order-line"><span>Shipping</span><span style="color:#cc0000;font-size:11px;">Confirmed via WhatsApp/Email</span></div>            <div class="order-line" id="discountLine" style="display:none;color:#cc0000;"><span>Discount (TROJAN20)</span><span id="summaryDiscount">-$0.00</span></div>
             <div class="order-total-line"><span>Total</span><span id="summaryTotal">$0.00</span></div>
             <div class="trust-badges">
               <div class="trust-badge"><span class="trust-badge-icon">🔒</span> 256-bit SSL Encryption</div>
@@ -2510,7 +2495,7 @@ function updateCartUI() {
     const sub = getSubtotal();
     const disc = getDiscount();
     const tot = getTotal();
-    const shipping = sub >= 3000 ? 0 : 200;
+   const shipping = 0;
     document.getElementById('cartSubtotal').textContent = `Rs. ${sub.toLocaleString()}`;
     document.getElementById('cartShipping').textContent = shipping === 0 ? 'Free' : `Rs. ${shipping}`;
     document.getElementById('cartDiscount').textContent = disc > 0 ? `-Rs. ${disc.toLocaleString()}` : '-Rs. 0';
@@ -2572,7 +2557,7 @@ function updateOrderSummary() {
 
   const sub = getSubtotal();
   const disc = getDiscount();
-  const shipping = sub >= 3000 ? 0 : 200;
+ const shipping = 0;
   const tot = sub - disc + shipping;
   if (document.getElementById('summarySubtotal')) {
     document.getElementById('summarySubtotal').textContent = `Rs. ${sub.toLocaleString()}`;
