@@ -2163,10 +2163,10 @@
               </div>
             </div>
            <div class="form-section-title" style="margin-top:28px;">Shipping</div>
-<div style="background:#fff8e1;border:1px solid #f0d080;padding:16px 18px;display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+<div style="background:#f5f5f5;border:1px solid #e8e8e8;padding:16px 18px;display:flex;align-items:center;gap:12px;margin-bottom:8px;">
   <span style="font-size:20px;">📦</span>
-  <div style="font-family:var(--font-condensed);font-size:13px;color:#555;line-height:1.6;">
-    Delivery charges will be confirmed via <strong>WhatsApp</strong> after your order is placed.
+  <div style="font-family:var(--font-condensed);font-size:13px;color:#000;line-height:1.6;">
+    Delivery charges will be confirmed via <strong>WhatsApp/Email</strong> after your order is placed.
   </div>
 </div>
             <button class="place-order-btn" onclick="goToPayment()" style="margin-top:24px;">
@@ -2184,7 +2184,7 @@
     <div style="font-size:12px;color:#999;margin-top:4px;">Pay when your order arrives at your door.</div>
   </div>
   </div>
-  <div style="display:flex;gap:12px;margin-top:24px;">
+  <div style="display:flex;gap:12px;margin-top:40px;">
     <button onclick="backToShipping()" style="flex:0 0 auto;background:none;border:1px solid var(--gray-200);padding:16px 20px;font-family:var(--font-condensed);font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.borderColor='var(--black)'" onmouseout="this.style.borderColor='var(--gray-200)'">← Back</button>
     <button class="place-order-btn" onclick="goToReview()" style="flex:1;margin-top:0;">Review Order →</button>
   </div>
@@ -2227,7 +2227,8 @@
               <button class="coupon-btn" onclick="applyCoupon()">Apply</button>
             </div>
             <div class="order-line"><span>Subtotal</span><span id="summarySubtotal">$0.00</span></div>
-<div class="order-line"><span>Shipping</span><span style="color:#cc0000;font-size:11px;">Confirmed via WhatsApp/Email</span></div>            <div class="order-line" id="discountLine" style="display:none;color:#cc0000;"><span>Discount (TROJAN20)</span><span id="summaryDiscount">-$0.00</span></div>
+<div class="order-line"><span>Shipping</span><span style="color:#000;font-size:11px;">Confirmed via WhatsApp</span></div>
+           <div class="order-line" id="discountLine" style="display:none;color:#cc0000;"><span>Discount (TROJAN20)</span><span id="summaryDiscount">-$0.00</span></div>
             <div class="order-total-line"><span>Total</span><span id="summaryTotal">$0.00</span></div>
             <div class="trust-badges">
               <div class="trust-badge"><span class="trust-badge-icon">🔒</span> 256-bit SSL Encryption</div>
