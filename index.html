@@ -1819,7 +1819,7 @@
     <a href="#products" class="view-all">View All →</a>
   </div>
   <div class="categories-grid">
-    <div class="category-card" onclick="filterProducts('tshirt')">
+    <div class="category-card" onclick="openCategory('tshirt')">
       <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80" alt="T-Shirts" class="cat-img">
       <div class="cat-info">
         <div class="cat-count">24 Products</div>
@@ -1827,15 +1827,14 @@
         <a href="#tshirts" class="cat-btn">Shop Now →</a>
       </div>
     </div>
-    <div class="category-card" onclick="filterProducts('trouser')">
-      <img src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=800&q=80" alt="Trousers" class="cat-img">
+<div class="category-card" onclick="openCategory('trouser')">      <img src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=800&q=80" alt="Trousers" class="cat-img">
       <div class="cat-info">
         <div class="cat-count">18 Products</div>
         <div class="cat-name">TROUSERS</div>
         <a href="#trousers" class="cat-btn">Shop Now →</a>
       </div>
     </div>
-    <div class="category-card" onclick="filterProducts('sleeve')">
+    <div class="category-card" onclick="openCategory('sleeve')">
       <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=800&q=80" alt="Full Sleeves" class="cat-img">
       <div class="cat-info">
         <div class="cat-count">15 Products</div>
@@ -2021,7 +2020,8 @@
     <div>
       <div class="footer-col-title">Company</div>
       <ul class="footer-links">
-        <li><a href="#">About STRK</a></li>
+        <li><a href="#">About Trojan</a></li>
+
         <li><a href="#">Sustainability</a></li>
         <li><a href="#">Careers</a></li>
         <li><a href="#">Press</a></li>
@@ -2330,7 +2330,7 @@
             </div>
             <div class="order-line"><span>Subtotal</span><span id="summarySubtotal">$0.00</span></div>
             <div class="order-line"><span>Shipping</span><span id="summaryShipping">Free</span></div>
-            <div class="order-line" id="discountLine" style="display:none;color:#cc0000;"><span>Discount (STRK20)</span><span id="summaryDiscount">-$0.00</span></div>
+            <div class="order-line" id="discountLine" style="display:none;color:#cc0000;"><span>Discount (TROJAN20)</span><span id="summaryDiscount">-$0.00</span></div>
             <div class="order-total-line"><span>Total</span><span id="summaryTotal">$0.00</span></div>
             <div class="trust-badges">
               <div class="trust-badge"><span class="trust-badge-icon">🔒</span> 256-bit SSL Encryption</div>
@@ -2348,7 +2348,7 @@
       <div class="success-icon">✓</div>
       <h2 class="success-title">ORDER PLACED!</h2>
       <p class="success-text">Thank you for your order. You'll receive a confirmation email shortly with your tracking information.</p>
-      <div class="success-order" id="successOrderNum">Order #STRK-000000</div>
+      <div class="success-order" id="successOrderNum">Order #TROJAN-000000</div>
       <button class="btn-primary" onclick="closeCheckout();closeCart();" style="margin-top:10px;"><span>Continue Shopping</span> <span>→</span></button>
     </div>
   </div>
@@ -2673,7 +2673,7 @@ function backToPayment() {
 }
 
 function placeOrder() {
-  const orderNum = 'STRK-' + Math.floor(100000 + Math.random() * 900000);
+  const orderNum = 'TROJAN-' + Math.floor(100000 + Math.random() * 900000);
   document.getElementById('successOrderNum').textContent = `Order #${orderNum}`;
   document.getElementById('checkoutBody').style.display = 'none';
   document.getElementById('successScreen').classList.add('show');
@@ -2714,7 +2714,7 @@ function formatExpiry(input) {
 // COUPON
 function applyCoupon() {
   const code = document.getElementById('couponCode').value.trim().toUpperCase();
-  if (code === 'STRK20') {
+   {
     couponApplied = true;
     showToast('✓ Coupon applied! 20% off');
     updateCartUI();
@@ -2744,8 +2744,7 @@ document.getElementById('checkoutModal').addEventListener('click', e => {
 
 // ESC KEY
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') { closeCart(); closeCheckout(); closeSearch(); closeWishlist(); closeProduct(); }
-});
+if (e.key === 'Escape') { closeCart(); closeCheckout(); closeSearch(); closeWishlist(); closeProduct(); closeCategory(); }});
 
 // ─── PRODUCT DETAIL ───────────────────────────────────────────────────────────
 const productDetails = {  1: { imgs:['https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600','https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=600','https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=600','https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=600'], desc:'<p>The Essential Black Tee is built for everyday wear. 100% organic ring-spun cotton (200 GSM) — buttery soft and pre-shrunk so it never loses its shape.</p><ul style="padding-left:18px;margin-top:12px;"><li>100% Organic Cotton 200 GSM</li><li>Ribbed crewneck collar</li><li>Double-stitched hem & sleeves</li><li>Machine washable 30°C</li></ul>', specs:[['Material','100% Organic Cotton, 200 GSM'],['Fit','Regular Fit'],['Neck','Crew Neck'],['Care','Machine Wash 30°C'],['Origin','Made in Pakistan'],['SKU','STRK-TS-001']], reviews:['Ahmed K. — ★★★★★ — Amazing quality, wears great every day!','Zara M. — ★★★★★ — Super soft fabric and true to size.','Bilal H. — ★★★★☆ — Love it, delivery was fast too.'] },
@@ -2952,6 +2951,30 @@ function updateWishlistUI() {
 // INIT
 renderProducts();
 updateCartUI();
+ function openCategory(cat) {
+  const names = { tshirt: 'T-SHIRTS', trouser: 'TROUSERS', sleeve: 'FULL SLEEVES' };
+  document.getElementById('catTitle').textContent = names[cat];
+  const filtered = products.filter(p => p.category === cat);
+  document.getElementById('catGrid').innerHTML = filtered.map(p => `
+    <div onclick="closeCategory();setTimeout(()=>openProduct(${p.id}),200);" style="cursor:pointer;">
+      <div style="position:relative;overflow:hidden;background:#f5f5f5;aspect-ratio:3/4;margin-bottom:16px;">
+        ${p.badge ? `<div style="position:absolute;top:12px;left:12px;background:${p.badge==='Sale'?'#cc0000':'#000'};color:#fff;font-family:var(--font-condensed);font-size:10px;font-weight:700;letter-spacing:2px;padding:4px 10px;z-index:2;">${p.badge}</div>` : ''}
+        <img src="${p.img}" style="width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div style="font-family:var(--font-condensed);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#999;margin-bottom:4px;">${p.category==='tshirt'?'T-Shirt':p.category==='trouser'?'Trouser':'Full Sleeve'}</div>
+      <div style="font-family:var(--font-condensed);font-size:16px;font-weight:700;margin-bottom:6px;">${p.name}</div>
+      <div style="font-family:var(--font-condensed);font-size:15px;font-weight:600;color:${p.oldPrice?'#cc0000':'#000'};">Rs. ${p.price.toLocaleString()}${p.oldPrice?` <span style="text-decoration:line-through;color:#999;font-weight:400;">Rs. ${p.oldPrice.toLocaleString()}</span>`:''}</div>
+    </div>
+  `).join('');
+  document.getElementById('catPage').style.display = 'block';
+  document.getElementById('catPage').scrollTop = 0;
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCategory() {
+  document.getElementById('catPage').style.display = 'none';
+  document.body.style.overflow = '';
+}
 </script>
  
 <!-- SEARCH OVERLAY -->
@@ -3065,6 +3088,16 @@ updateCartUI();
     <div style="font-family:'Bebas Neue',sans-serif;font-size:48px;letter-spacing:2px;margin-bottom:8px;">RELATED PRODUCTS</div>
     <div style="font-family:var(--font-condensed);font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#999;margin-bottom:36px;">You might also like</div>
     <div id="relatedGrid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;"></div>
+  </div>
+</div>
+<!-- CATEGORY OVERLAY -->
+<div id="catPage" style="display:none;position:fixed;inset:0;background:#fff;z-index:8000;overflow-y:auto;">
+  <div style="position:sticky;top:0;background:#fff;border-bottom:1px solid #e8e8e8;padding:16px 40px;display:flex;align-items:center;justify-content:space-between;z-index:10;">
+    <div id="catTitle" style="font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:3px;"></div>
+    <button onclick="closeCategory()" style="background:none;border:none;cursor:pointer;font-family:var(--font-condensed);font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;display:flex;align-items:center;gap:8px;">✕ CLOSE</button>
+  </div>
+  <div style="max-width:1200px;margin:0 auto;padding:40px;">
+    <div id="catGrid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:30px;"></div>
   </div>
 </div>
 </body>
