@@ -1729,9 +1729,9 @@
   <a href="#" class="nav-logo">TROJAN</a>
   <ul class="nav-links">
     <li><a href="#categories">Collections</a></li>
-    <li><a href="#products" onclick="filterProducts('tshirt')">T-Shirts</a></li>
-<li><a href="#products" onclick="filterProducts('trouser')">Trousers</a></li>
-<li><a href="#products" onclick="filterProducts('sleeve')">Full Sleeves</a></li>
+   <li><a href="#" onclick="openCategory('tshirt')">T-Shirts</a></li>
+<li><a href="#" onclick="openCategory('trouser')">Trousers</a></li>
+<li><a href="#" onclick="openCategory('sleeve')">Full Sleeves</a></li>
 <li><a href="#footer">About</a></li>
   </ul>
   <div class="nav-actions">
@@ -2845,6 +2845,31 @@ function closeCategory() {
   document.getElementById('catPage').style.display = 'none';
   document.body.style.overflow = '';
 }
+const infoPages = {
+  shipping: { title: 'SHIPPING INFO', content: `<p>We deliver across Pakistan via trusted courier services.</p><ul style="padding-left:20px;margin-top:12px;line-height:2;"><li>Delivery time: 3–7 business days depending on your city</li><li>Delivery charges are confirmed via WhatsApp after placing your order</li><li>Same-day dispatch available for orders placed before 2PM</li><li>You will receive a tracking number once your order is dispatched</li><li>For any delivery queries, contact us on WhatsApp</li></ul>` },
+  returns: { title: 'RETURNS POLICY', content: `<p>We want you to be 100% satisfied with your purchase.</p><ul style="padding-left:20px;margin-top:12px;line-height:2;"><li>Returns accepted within 30 days of delivery</li><li>Item must be unused, unwashed, and in original condition</li><li>Contact us on WhatsApp with your order number to initiate a return</li><li>Exchange is available for size issues</li><li>Refunds are processed within 5–7 business days</li></ul>` },
+  track: { title: 'TRACK YOUR ORDER', content: `<p>To track your order:</p><ul style="padding-left:20px;margin-top:12px;line-height:2;"><li>You will receive a tracking number via WhatsApp once dispatched</li><li>Use the tracking number on the courier's website</li><li>For live updates, message us on WhatsApp with your order number</li><li>Orders are typically dispatched within 24 hours</li></ul>` },
+  faq: { title: 'FAQ', content: `<p><strong>Are all items authentic?</strong><br>Yes — every piece is 100% genuine. No fakes, ever.</p><p style="margin-top:16px;"><strong>Where do you source from?</strong><br>We source from Karachi lots — authentic pre-owned branded items including Nike, Adidas, Jordan, Stone Island and more.</p><p style="margin-top:16px;"><strong>What sizes do you carry?</strong><br>Sizes vary per item. Check the product page for available sizes.</p><p style="margin-top:16px;"><strong>Do you do COD?</strong><br>Yes, Cash on Delivery is available nationwide.</p><p style="margin-top:16px;"><strong>How do I place an order?</strong><br>Browse, add to cart, and checkout. Delivery charges will be confirmed via WhatsApp.</p>` },
+  contact: { title: 'CONTACT US', content: `<p>We'd love to hear from you!</p><ul style="padding-left:20px;margin-top:12px;line-height:2;"><li>📱 WhatsApp: +92 3XX XXXXXXX</li><li>📸 Instagram: @trojanpk</li><li>🕐 Response time: within a few hours</li><li>📦 For order issues, have your order number ready</li></ul>` },
+  about: { title: 'ABOUT TROJAN', content: `<p>Trojan is Karachi's premier pre-owned branded store.</p><p style="margin-top:16px;">We source authentic Nike, Adidas, Jordan, Stone Island, Ralph Lauren and more from Karachi lots — and sell them at unbeatable prices.</p><p style="margin-top:16px;">Every single piece is genuine. We have a strict no-fakes policy. What you see is what you get.</p><p style="margin-top:16px;">Our mission is to make premium branded fashion accessible to everyone in Pakistan.</p>` },
+  sustainability: { title: 'SUSTAINABILITY', content: `<p>At Trojan, sustainability is at the heart of what we do.</p><p style="margin-top:16px;">By selling pre-owned branded clothing, we extend the life of quality garments and reduce fashion waste. Every item we sell is one less item in a landfill.</p><p style="margin-top:16px;">Pre-owned is the most sustainable form of fashion — and we're proud to lead that movement in Pakistan.</p>` },
+  careers: { title: 'CAREERS', content: `<p>Interested in joining the Trojan team?</p><p style="margin-top:16px;">We're always looking for passionate people who love fashion and want to be part of something exciting.</p><ul style="padding-left:20px;margin-top:12px;line-height:2;"><li>Social media & content creators</li><li>Sourcing & inventory management</li><li>Customer support</li></ul><p style="margin-top:16px;">Send your details to us on WhatsApp to apply.</p>` },
+  press: { title: 'PRESS', content: `<p>For press enquiries, collaborations, or media features, please get in touch.</p><p style="margin-top:16px;">We welcome coverage from fashion bloggers, journalists, and content creators interested in covering the pre-owned fashion scene in Pakistan.</p><p style="margin-top:16px;">Contact us via WhatsApp or Instagram for all press-related matters.</p>` },
+  affiliates: { title: 'AFFILIATE PROGRAM', content: `<p>Earn with Trojan by joining our affiliate program.</p><ul style="padding-left:20px;margin-top:12px;line-height:2;"><li>Share your unique code with your followers</li><li>Earn commission on every sale made through your code</li><li>Open to anyone with an engaged audience</li><li>Influencers, bloggers, and content creators welcome</li></ul><p style="margin-top:16px;">Message us on WhatsApp to get started.</p>` },
+  blog: { title: 'BLOG', content: `<p>Stay tuned for style guides, brand spotlights, and tips on how to style pre-owned branded pieces.</p><p style="margin-top:16px;">Our blog is coming soon. Follow us on Instagram for regular content in the meantime.</p>` },
+};
+
+function openInfo(page) {
+  const data = infoPages[page];
+  document.getElementById('infoTitle').textContent = data.title;
+  document.getElementById('infoContent').innerHTML = data.content;
+  document.getElementById('infoModal').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function closeInfo() {
+  document.getElementById('infoModal').style.display = 'none';
+  document.body.style.overflow = '';
+}
 </script>
  
 <!-- SEARCH OVERLAY -->
@@ -2968,6 +2993,16 @@ function closeCategory() {
   </div>
   <div style="max-width:1200px;margin:0 auto;padding:40px;">
     <div id="catGrid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:30px;"></div>
+  </div>
+</div>
+<!-- INFO MODAL -->
+<div id="infoModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:9600;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(6px);" onclick="if(event.target===this)closeInfo()">
+  <div style="background:#fff;max-width:600px;width:100%;max-height:80vh;overflow-y:auto;">
+    <div style="background:#000;color:#fff;padding:24px 30px;display:flex;justify-content:space-between;align-items:center;">
+      <div id="infoTitle" style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:3px;"></div>
+      <button onclick="closeInfo()" style="background:none;border:none;color:#fff;font-size:24px;cursor:pointer;">✕</button>
+    </div>
+    <div id="infoContent" style="padding:36px;font-family:var(--font-body);font-size:15px;line-height:1.8;color:#555;"></div>
   </div>
 </div>
 </body>
