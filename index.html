@@ -2162,33 +2162,13 @@
                 </div>
               </div>
             </div>
-            <div class="form-section-title" style="margin-top:28px;">Shipping Method</div>
-            <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:8px;">
-              <label style="display:flex;align-items:center;gap:12px;border:1px solid var(--gray-200);padding:14px 16px;cursor: pointer;transition:border-color 0.2s;" onclick="this.style.borderColor='#000';document.querySelectorAll('.ship-opt').forEach(e=>e.style.borderColor='var(--gray-200)');this.style.borderColor='#000';" class="ship-opt">
-                <input type="radio" name="shipping" value="standard" checked style="accent-color:#000;margin:0;">
-                <div style="flex:1;">
-                  <div style="font-family:var(--font-condensed);font-size:13px;font-weight:700;letter-spacing:1px;">STANDARD SHIPPING</div>
-                  <div style="font-size:12px;color:var(--gray-400);">5-7 business days</div>
-                </div>
-                <div style="font-family:var(--font-condensed);font-size:14px;font-weight:700;">FREE</div>
-              </label>
-              <label style="display:flex;align-items:center;gap:12px;border:1px solid var(--gray-200);padding:14px 16px;cursor: pointer;transition:border-color 0.2s;" class="ship-opt">
-                <input type="radio" name="shipping" value="express" style="accent-color:#000;margin:0;">
-                <div style="flex:1;">
-                  <div style="font-family:var(--font-condensed);font-size:13px;font-weight:700;letter-spacing:1px;">EXPRESS SHIPPING</div>
-                  <div style="font-size:12px;color:var(--gray-400);">2-3 business days</div>
-                </div>
-                <div style="font-family:var(--font-condensed);font-size:14px;font-weight:700;">$9.99</div>
-              </label>
-              <label style="display:flex;align-items:center;gap:12px;border:1px solid var(--gray-200);padding:14px 16px;cursor: pointer;transition:border-color 0.2s;" class="ship-opt">
-                <input type="radio" name="shipping" value="overnight" style="accent-color:#000;margin:0;">
-                <div style="flex:1;">
-                  <div style="font-family:var(--font-condensed);font-size:13px;font-weight:700;letter-spacing:1px;">OVERNIGHT</div>
-                  <div style="font-size:12px;color:var(--gray-400);">Next business day</div>
-                </div>
-                <div style="font-family:var(--font-condensed);font-size:14px;font-weight:700;">$24.99</div>
-              </label>
-            </div>
+           <div class="form-section-title" style="margin-top:28px;">Shipping</div>
+<div style="background:#fff8e1;border:1px solid #f0d080;padding:16px 18px;display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+  <span style="font-size:20px;">📦</span>
+  <div style="font-family:var(--font-condensed);font-size:13px;color:#555;line-height:1.6;">
+    Delivery charges will be confirmed via <strong>WhatsApp</strong> after your order is placed.
+  </div>
+</div>
             <button class="place-order-btn" onclick="goToPayment()" style="margin-top:24px;">
               Continue to Payment →
             </button>
