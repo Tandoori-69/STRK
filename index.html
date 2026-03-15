@@ -2409,7 +2409,6 @@ function updateCartUI() {
     const tot = getTotal();
    const shipping = 0;
     document.getElementById('cartSubtotal').textContent = `Rs. ${sub.toLocaleString()}`;
-    document.getElementById('cartDiscount').textContent = disc > 0 ? `-Rs. ${disc.toLocaleString()}` : '-Rs. 0';
     document.getElementById('cartTotal').textContent = `Rs. ${(tot + shipping).toLocaleString()}`;
     footer.style.display = 'block';
   }
