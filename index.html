@@ -2497,7 +2497,6 @@ function updateCartUI() {
     const tot = getTotal();
    const shipping = 0;
     document.getElementById('cartSubtotal').textContent = `Rs. ${sub.toLocaleString()}`;
-    document.getElementById('cartShipping').textContent = shipping === 0 ? 'Free' : `Rs. ${shipping}`;
     document.getElementById('cartDiscount').textContent = disc > 0 ? `-Rs. ${disc.toLocaleString()}` : '-Rs. 0';
     document.getElementById('cartTotal').textContent = `Rs. ${(tot + shipping).toLocaleString()}`;
     footer.style.display = 'block';
@@ -2561,7 +2560,6 @@ function updateOrderSummary() {
   const tot = sub - disc + shipping;
   if (document.getElementById('summarySubtotal')) {
     document.getElementById('summarySubtotal').textContent = `Rs. ${sub.toLocaleString()}`;
-    document.getElementById('summaryShipping').textContent = shipping === 0 ? 'Free' : `Rs. ${shipping}`;
     document.getElementById('summaryTotal').textContent = `Rs. ${tot.toLocaleString()}`;
     if (disc > 0) {
       document.getElementById('discountLine').style.display = 'flex';
