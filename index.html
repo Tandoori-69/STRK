@@ -2007,22 +2007,21 @@
     <div>
      <div class="footer-col-title">Help</div>
 <ul class="footer-links">
-  <li><a href="https://wa.me/923XXXXXXXXX?text=Hi%20I%20have%20a%20question%20about%20shipping" target="_blank">Shipping Info</a></li>
-  <li><a href="https://wa.me/923XXXXXXXXX?text=Hi%20I%20want%20to%20return%20an%20order" target="_blank">Returns</a></li>
-  <li><a href="https://wa.me/923XXXXXXXXX?text=Hi%20I%20want%20to%20track%20my%20order" target="_blank">Track Order</a></li>
-  <li><a href="https://wa.me/923XXXXXXXXX?text=Hi%20I%20have%20a%20question" target="_blank">FAQ</a></li>
-  <li><a href="https://wa.me/923XXXXXXXXX" target="_blank">Contact Us</a></li>
-</ul>
+  <li><a href="#" onclick="openInfo('shipping')">Shipping Info</a></li>
+<li><a href="#" onclick="openInfo('returns')">Returns</a></li>
+<li><a href="#" onclick="openInfo('track')">Track Order</a></li>
+<li><a href="#" onclick="openInfo('faq')">FAQ</a></li>
+<li><a href="#" onclick="openInfo('contact')">Contact Us</a></li>
     </div>
     <div>
       <div class="footer-col-title">Company</div>
 <ul class="footer-links">
-  <li><a href="#footer">About Trojan</a></li>
-  <li><a href="https://wa.me/923XXXXXXXXX?text=Hi%20I%20want%20to%20know%20about%20sustainability" target="_blank">Sustainability</a></li>
-  <li><a href="https://wa.me/923XXXXXXXXX?text=Hi%20I%20am%20interested%20in%20a%20career%20at%20Trojan" target="_blank">Careers</a></li>
-  <li><a href="https://wa.me/923XXXXXXXXX?text=Hi%20I%20have%20a%20press%20inquiry" target="_blank">Press</a></li>
-  <li><a href="https://wa.me/923XXXXXXXXX?text=Hi%20I%20want%20to%20know%20about%20the%20affiliate%20program" target="_blank">Affiliates</a></li>
-  <li><a href="https://wa.me/923XXXXXXXXX?text=Hi%20I%20want%20to%20know%20more%20about%20Trojan" target="_blank">Blog</a></li>
+  <li><a href="#" onclick="openInfo('about')">About Trojan</a></li>
+<li><a href="#" onclick="openInfo('sustainability')">Sustainability</a></li>
+<li><a href="#" onclick="openInfo('careers')">Careers</a></li>
+<li><a href="#" onclick="openInfo('press')">Press</a></li>
+<li><a href="#" onclick="openInfo('affiliates')">Affiliates</a></li>
+<li><a href="#" onclick="openInfo('blog')">Blog</a></li>
 </ul>
     </div>
   </div>
@@ -2614,8 +2613,7 @@ document.getElementById('checkoutModal').addEventListener('click', e => {
 
 // ESC KEY
 document.addEventListener('keydown', e => {
-if (e.key === 'Escape') { closeCart(); closeCheckout(); closeSearch(); closeWishlist(); closeProduct(); closeCategory(); }});
-
+if (e.key === 'Escape') { closeCart(); closeCheckout(); closeSearch(); closeWishlist(); closeProduct(); closeCategory(); closeInfo(); }
 // ─── PRODUCT DETAIL ───────────────────────────────────────────────────────────
 const productDetails = {  1: { imgs:['https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600','https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=600','https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=600','https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=600'], desc:'<p>The Essential Black Tee is built for everyday wear. 100% organic ring-spun cotton (200 GSM) — buttery soft and pre-shrunk so it never loses its shape.</p><ul style="padding-left:18px;margin-top:12px;"><li>100% Organic Cotton 200 GSM</li><li>Ribbed crewneck collar</li><li>Double-stitched hem & sleeves</li><li>Machine washable 30°C</li></ul>', specs:[['Material','100% Organic Cotton, 200 GSM'],['Fit','Regular Fit'],['Neck','Crew Neck'],['Care','Machine Wash 30°C'],['Origin','Made in Pakistan'],['SKU','STRK-TS-001']], reviews:['Ahmed K. — ★★★★★ — Amazing quality, wears great every day!','Zara M. — ★★★★★ — Super soft fabric and true to size.','Bilal H. — ★★★★☆ — Love it, delivery was fast too.'] },
   2: { imgs:['https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=600','https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600','https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=600','https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=600'], desc:'<p>Bold graphic tee with water-based screen print that won\'t crack or fade. Heavyweight 220 GSM cotton with a slightly oversized boxy fit.</p><ul style="padding-left:18px;margin-top:12px;"><li>220 GSM Heavyweight Cotton</li><li>Water-based screen print</li><li>Oversized boxy fit</li><li>Machine wash cold</li></ul>', specs:[['Material','220 GSM Cotton'],['Fit','Oversized'],['Print','Water-based Screen'],['Care','Machine Wash Cold'],['SKU','STRK-TS-002']], reviews:['Usman T. — ★★★★★ — Best graphic tee I\'ve owned.','Sara N. — ★★★★☆ — Great print quality, no cracking after 10 washes.'] },
