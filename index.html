@@ -2714,7 +2714,7 @@ function formatExpiry(input) {
 // COUPON
 function applyCoupon() {
   const code = document.getElementById('couponCode').value.trim().toUpperCase();
-   {
+  if (code === 'TROJAN20') {
     couponApplied = true;
     showToast('✓ Coupon applied! 20% off');
     updateCartUI();
