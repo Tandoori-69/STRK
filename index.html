@@ -2545,10 +2545,8 @@ function openProduct(id) {
   document.getElementById('pdpBreadName').textContent = p.name;
   document.getElementById('pdpCatLabel').textContent = p.category==='tshirt'?'T-Shirts':p.category==='trouser'?'Trousers':'Full Sleeves';
   document.getElementById('pdpNameEl').textContent = p.name;
-  document.getElementById('pdpStarsEl').innerHTML = `<span style="color:#000;">${'★'.repeat(Math.floor(p.rating))}</span> <span style="font-family:var(--font-condensed);font-size:12px;color:#999;">(${p.reviews} reviews)</span>`;
   document.getElementById('pdpMainImg').src = d.imgs[0];
-  document.getElementById('pdpQtyVal').textContent = '1';
-
+ 
   // Badge
   const badge = document.getElementById('pdpBadgeEl');
   if (p.badge) { badge.textContent = p.badge; badge.style.display='block'; badge.style.background = p.badge==='Sale' ? '#cc0000' : '#000'; }
@@ -2575,21 +2573,6 @@ function openProduct(id) {
 
   // Desc
   document.getElementById('pdpDesc').innerHTML = d.desc;
-
-  // Specs
-  document.getElementById('pdpSpecs').innerHTML = `<table style="width:100%;border-collapse:collapse;">${d.specs.map(([k,v])=>`<tr style="border-bottom:1px solid #e8e8e8;"><td style="padding:12px 0;font-family:var(--font-condensed);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#999;width:40%;">${k}</td><td style="padding:12px 0;font-family:var(--font-condensed);font-size:13px;">${v}</td></tr>`).join('')}</table>`;
-
-  // Reviews
-  document.getElementById('pdpRevs').innerHTML = d.reviews.map(r => {
-    const [name, stars, text] = r.split(' — ');
-    return `<div style="padding:16px 0;border-bottom:1px solid #e8e8e8;"><div style="font-family:var(--font-condensed);font-size:12px;margin-bottom:4px;">${stars}</div><div style="font-family:var(--font-condensed);font-size:13px;font-weight:700;text-transform:uppercase;margin-bottom:6px;">${name}</div><div style="font-size:13px;color:#555;">${text}</div></div>`;
-  }).join('');
-
-  // Reset tabs
-  document.querySelectorAll('[onclick*="pdpTab"]').forEach(b => { b.style.color='#999'; b.style.borderBottom='2px solid transparent'; });
-  document.querySelector('[onclick*="pdpDesc"]').style.color='#000';
-  document.querySelector('[onclick*="pdpDesc"]').style.borderBottom='2px solid #000';
-  ['pdpDesc','pdpSpecs','pdpRevs'].forEach(id => document.getElementById(id).style.display = id==='pdpDesc'?'block':'none');
 
  const related = products.filter(x => x.id !== id).slice(0, 4);
   document.getElementById('relatedGrid').innerHTML = related.map(rp => `
