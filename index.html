@@ -2161,13 +2161,13 @@ animation: marquee 22s linear infinite;
 // ─── PRODUCT DATA ─────────────────────────────────────────────────────────────
 const products = [
 { id: 1, name: 'Essential Black Tee', category: 'tshirt', price: 1990, oldPrice: null, badge: null, img: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&q=80', colors: ['#000', '#fff', '#555'], sizes: ['XS','S','M','L','XL'], rating: 4.9, reviews: 128 },
-{ id: 2, name: 'Graphic Strike Tee', category: 'tshirt', price: 2490, oldPrice: 3490, badge: null, img: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&q=80', colors: ['#000', '#333'], sizes: ['S','M','L','XL','XXL'], rating: 4.7, reviews: 89 },
+{ id: 2, name: 'Graphic Strike Tee', category: 'tshirt', price: 2490, oldPrice: null, badge: null, img: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&q=80', colors: ['#000', '#333'], sizes: ['S','M','L','XL','XXL'], rating: 4.7, reviews: 89 },
 { id: 3, name: 'Slim Fit Chinos', category: 'trouser', price: 3990, oldPrice: null, badge: null, img: 'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=500&q=80', colors: ['#222', '#8B7355', '#1a1a2e'], sizes: ['28','30','32','34','36'], rating: 4.8, reviews: 203 },
-{ id: 4, name: 'Cargo Combat Pants', category: 'trouser', price: 4490, oldPrice: 5490, badge: null, img: 'https://images.unsplash.com/photo-1542272604-787c3835535d?w=500&q=80', colors: ['#000', '#556B2F'], sizes: ['30','32','34','36'], rating: 4.6, reviews: 76 },
+{ id: 4, name: 'Cargo Combat Pants', category: 'trouser', price: 4490, oldPrice: null, badge: null, img: 'https://images.unsplash.com/photo-1542272604-787c3835535d?w=500&q=80', colors: ['#000', '#556B2F'], sizes: ['30','32','34','36'], rating: 4.6, reviews: 76 },
 { id: 5, name: 'Oxford Button-Down', category: 'sleeve', price: 2990, oldPrice: null, badge: null, img: 'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=500&q=80', colors: ['#fff', '#000', '#1a237e'], sizes: ['XS','S','M','L','XL','XXL'], rating: 4.9, reviews: 157 },
-{ id: 6, name: 'Bomber Field Shirt', category: 'sleeve', price: 4990, oldPrice: 6490, badge: null, img: 'https://images.unsplash.com/photo-1607345366928-199ea26cfe3e?w=500&q=80', colors: ['#000', '#4a4a4a'], sizes: ['S','M','L','XL'], rating: 4.7, reviews: 94 },
+{ id: 6, name: 'Bomber Field Shirt', category: 'sleeve', price: 4990, oldPrice: null, badge: null, img: 'https://images.unsplash.com/photo-1607345366928-199ea26cfe3e?w=500&q=80', colors: ['#000', '#4a4a4a'], sizes: ['S','M','L','XL'], rating: 4.7, reviews: 94 },
 { id: 7, name: 'Oversized Drop Tee', category: 'tshirt', price: 1890, oldPrice: null, badge: null, img: 'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=500&q=80', colors: ['#f5f5f5', '#000', '#ccc'], sizes: ['S','M','L','XL','XXL'], rating: 4.8, reviews: 210 },
-{ id: 8, name: 'Tapered Track Pants', category: 'trouser', price: 3490, oldPrice: 4490, badge: null, img: 'https://images.unsplash.com/photo-1594938298603-c8148c4b4f4e?w=500&q=80', colors: ['#000', '#1a1a1a'], sizes: ['S','M','L','XL'], rating: 4.5, reviews: 62 },
+{ id: 8, name: 'Tapered Track Pants', category: 'trouser', price: 3490, oldPrice: null, badge: null, img: 'https://images.unsplash.com/photo-1594938298603-c8148c4b4f4e?w=500&q=80', colors: ['#000', '#1a1a1a'], sizes: ['S','M','L','XL'], rating: 4.5, reviews: 62 },
 ];
 
 // ─── CART STATE ───────────────────────────────────────────────────────────────
@@ -2857,7 +2857,6 @@ function closeInfo() {
     <div>
       <div id="pdpCatLabel" style="font-family:var(--font-condensed);font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#999;margin-bottom:10px;"></div>
       <h1 id="pdpNameEl" style="font-family:'Bebas Neue',sans-serif;font-size:52px;letter-spacing:1px;line-height:1;margin-bottom:14px;"></h1>
-      <div id="pdpStarsEl" style="font-size:14px;margin-bottom:20px;"></div>
       <div id="pdpPriceRow" style="display:flex;align-items:center;gap:16px;margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid #e8e8e8;"></div>
 
       <div style="font-family:var(--font-condensed);font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:12px;">COLOR</div>
@@ -2868,15 +2867,6 @@ function closeInfo() {
       </div>
       <div id="pdpSizesEl" style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px;"></div>
       <div id="pdpSizeErr" style="display:none;color:#cc0000;font-family:var(--font-condensed);font-size:11px;letter-spacing:1px;margin-bottom:12px;">⚠ Please select a size</div>
-
-      <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;margin-top:20px;">
-        <div style="font-family:var(--font-condensed);font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;">QTY</div>
-        <div style="display:flex;align-items:center;border:1.5px solid #e8e8e8;">
-          <button onclick="pdpQtyChange(-1)" style="width:44px;height:44px;background:none;border:none;cursor:pointer;font-size:18px;">−</button>
-          <div id="pdpQtyVal" style="width:48px;text-align:center;font-family:var(--font-condensed);font-size:16px;font-weight:700;border-left:1.5px solid #e8e8e8;border-right:1.5px solid #e8e8e8;line-height:44px;">1</div>
-          <button onclick="pdpQtyChange(1)" style="width:44px;height:44px;background:none;border:none;cursor:pointer;font-size:18px;">+</button>
-        </div>
-      </div>
 
       <div style="display:flex;gap:10px;margin-bottom:12px;">
         <button onclick="pdpAddCart()" style="flex:1;background:#000;color:#fff;border:none;padding:17px;font-family:var(--font-condensed);font-size:13px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;cursor:pointer;">Add to Cart</button>
@@ -2890,12 +2880,8 @@ function closeInfo() {
       <!-- TABS -->
       <div style="border-bottom:1px solid #e8e8e8;display:flex;margin-bottom:24px;">
         <button onclick="pdpTab(this,'pdpDesc')" class="pdp-tab-active" style="background:none;border:none;border-bottom:2px solid #000;padding:14px 20px;font-family:var(--font-condensed);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;color:#000;margin-bottom:-1px;">Description</button>
-        <button onclick="pdpTab(this,'pdpSpecs')" style="background:none;border:none;border-bottom:2px solid transparent;padding:14px 20px;font-family:var(--font-condensed);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;color:#999;margin-bottom:-1px;">Details</button>
-        <button onclick="pdpTab(this,'pdpRevs')" style="background:none;border:none;border-bottom:2px solid transparent;padding:14px 20px;font-family:var(--font-condensed);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;color:#999;margin-bottom:-1px;">Reviews</button>
       </div>
       <div id="pdpDesc" style="font-size:14px;line-height:1.8;color:#555;font-weight:300;"></div>
-      <div id="pdpSpecs" style="display:none;"></div>
-      <div id="pdpRevs" style="display:none;"></div>
     </div>
   </div>
 
