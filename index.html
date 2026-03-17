@@ -1827,30 +1827,6 @@
   </div>
 </section>
 
-<!-- FEATURE STRIP -->
-<div class="feature-strip">
-  <div class="feature-item">
-    <div class="feature-icon">🚚</div>
-    <div class="feature-title">Free Shipping</div>
-    <div class="feature-desc">On all orders over Rs. 3,000. Fast 2-5 day delivery across Pakistan.</div>
-  </div>
-  <div class="feature-item">
-    <div class="feature-icon">↩</div>
-    <div class="feature-title">30-Day Returns</div>
-    <div class="feature-desc">Not satisfied? Return within 30 days for a full refund, no questions.</div>
-  </div>
-  <div class="feature-item">
-    <div class="feature-icon">🔒</div>
-    <div class="feature-title">Secure Payment</div>
-    <div class="feature-desc">256-bit SSL encryption. We accept Visa, Mastercard, Amex & PayPal.</div>
-  </div>
-  <div class="feature-item">
-    <div class="feature-icon">♻</div>
-    <div class="feature-title">Eco Materials</div>
-    <div class="feature-desc">100% organic cotton and recycled fabrics. Fashion that cares for the planet.</div>
-  </div>
-</div>
-
 <!-- TESTIMONIALS -->
 <div class="testimonials">
   <div class="section-header">
@@ -1860,42 +1836,42 @@
     </div>
   </div>
   <div class="testimonials-grid">
-    <div class="testimonial-card fade-up">
-      <div class="testimonial-quote">"</div>
-      <p class="testimonial-text">The quality of Trojan apparel is unmatched. I've been buying from them for 2 years and every single piece has held up perfectly. The t-shirts especially are buttery soft and never shrink.</p>
-      <div class="testimonial-author">
-        <div class="author-avatar">👤</div>
-        <div>
-          <div class="testimonial-stars">★★★★★</div>
-          <div class="author-name">Marcus T.</div>
-          <div class="author-location">New York, USA</div>
-        </div>
-      </div>
+   <div class="testimonial-card fade-up">
+  <div class="testimonial-quote">"</div>
+  <p class="testimonial-text">Got a Nike jacket from Trojan for half the retail price and it's in perfect condition. You can tell they actually check every piece before selling. No fakes, exactly as described.</p>
+  <div class="testimonial-author">
+    <div class="author-avatar">👤</div>
+    <div>
+      <div class="testimonial-stars">★★★★★</div>
+      <div class="author-name">Ahmed K.</div>
+      <div class="author-location">Karachi, Pakistan</div>
     </div>
-    <div class="testimonial-card fade-up">
-      <div class="testimonial-quote">"</div>
-      <p class="testimonial-text">Finally found trousers that actually fit well without breaking the bank. The cut is perfect, the fabric feels premium, and the delivery was super fast. 100% recommend Trojan to everyone.</p>
-      <div class="testimonial-author">
-        <div class="author-avatar">👤</div>
-        <div>
-          <div class="testimonial-stars">★★★★★</div>
-          <div class="author-name">Priya K.</div>
-          <div class="author-location">London, UK</div>
-        </div>
-      </div>
+  </div>
+</div>
+<div class="testimonial-card fade-up">
+  <div class="testimonial-quote">"</div>
+  <p class="testimonial-text">Bought an Adidas tracksuit and a Jordan tee. Both 100% authentic, great condition. Prices are unbeatable for branded stuff. Will definitely be coming back for more.</p>
+  <div class="testimonial-author">
+    <div class="author-avatar">👤</div>
+    <div>
+      <div class="testimonial-stars">★★★★★</div>
+      <div class="author-name">Bilal R.</div>
+      <div class="author-location">Lahore, Pakistan</div>
     </div>
-    <div class="testimonial-card fade-up">
-      <div class="testimonial-quote">"</div>
-      <p class="testimonial-text">The full sleeve shirts are incredible. Wore one on a 12-hour flight and it still looked fresh when I landed. The material is breathable and the stitching is immaculate. Love this brand.</p>
-      <div class="testimonial-author">
-        <div class="author-avatar">👤</div>
-        <div>
-          <div class="testimonial-stars">★★★★★</div>
-          <div class="author-name">Adeola F.</div>
-          <div class="author-location">Lagos, Nigeria</div>
-        </div>
-      </div>
+  </div>
+</div>
+<div class="testimonial-card fade-up">
+  <div class="testimonial-quote">"</div>
+  <p class="testimonial-text">Finally a place in Pakistan where you can get real branded clothes without paying full retail. Got a Stone Island shirt for an insane price. Trojan is the real deal.</p>
+  <div class="testimonial-author">
+    <div class="author-avatar">👤</div>
+    <div>
+      <div class="testimonial-stars">★★★★★</div>
+      <div class="author-name">Zara M.</div>
+      <div class="author-location">Islamabad, Pakistan</div>
     </div>
+  </div>
+</div>
   </div>
 </div>
 
@@ -2017,11 +1993,6 @@
       <span>🔒</span> Checkout Securely
     </button>
     <button class="continue-shopping" onclick="closeCart()">Continue Shopping</button>
-    <div class="secure-badges">
-      <span>🔒 SSL Secure</span>
-      <span>↩ Easy Returns</span>
-      <span>✓ Guaranteed</span>
-    </div>
   </div>
 </div>
 
@@ -2331,11 +2302,6 @@ function updateCartUI() {
         <div>
           <div class="cart-item-name">${item.name}</div>
           <div class="cart-item-meta">Size: ${item.size} · ${item.category === 'tshirt' ? 'T-Shirt' : item.category === 'trouser' ? 'Trouser' : 'Full Sleeve'}</div>
-          <div class="cart-qty">
-            <button class="qty-btn" onclick="updateQty(${item.id}, -1)">−</button>
-            <div class="qty-val">${item.qty}</div>
-            <button class="qty-btn" onclick="updateQty(${item.id}, 1)">+</button>
-          </div>
           <button class="cart-remove" onclick="removeFromCart(${item.id})">Remove</button>
         </div>
         <div class="cart-item-price">Rs. ${(item.price * item.qty).toLocaleString()}</div>
