@@ -1914,7 +1914,7 @@ animation: marquee 22s linear infinite;
     <div>
       <div class="footer-brand-logo">TROJAN<span>®</span>
 </div>
-      <p class="footer-tagline">Karachi's pre-owned branded store. We source authentic Nike, Adidas, Jordan & more from Karachi lots and sell them at unbeatable prices. Every piece is genuine — no fakes, ever.</p>
+      <p class="footer-tagline">Trojan is a pre-owned branded store. We source authentic Nike, Adidas, Jordan & more and sell them at unbeatable prices. Every piece is genuine — no fakes, ever.</p>
      <div class="footer-social">
  <a href="https://instagram.com/YOUR_HANDLE" class="social-link" title="Instagram" target="_blank">
   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
@@ -1943,8 +1943,6 @@ animation: marquee 22s linear infinite;
      <div class="footer-col-title">Help</div>
 <ul class="footer-links">
  <li><a href="#" onclick="openInfo('shipping');return false;">Shipping Info</a></li>
-<li><a href="#" onclick="openInfo('returns');return false;">Returns</a></li>
-<li><a href="#" onclick="openInfo('track');return false;">Track Order</a></li>
 <li><a href="#" onclick="openInfo('faq');return false;">FAQ</a></li>
 <li><a href="#" onclick="openInfo('contact');return false;">Contact Us</a></li>
 </ul>
@@ -1964,9 +1962,9 @@ animation: marquee 22s linear infinite;
   <div class="footer-bottom">
     <p class="footer-copy">© 2025 Trojan Pre-Owned. All rights reserved.</p>
     <div class="footer-legal">
-      <a href="#">Privacy Policy</a>
-      <a href="#">Terms of Use</a>
-      <a href="#">Cookie Settings</a>
+      <a href="#" onclick="openInfo('privacy');return false;">Privacy Policy</a>
+<a href="#" onclick="openInfo('terms');return false;">Terms of Use</a>
+<a href="#" onclick="openInfo('cookies');return false;">Cookie Settings</a>
     </div>
   </div>
 </footer>
@@ -2162,14 +2160,14 @@ animation: marquee 22s linear infinite;
 <script>
 // ─── PRODUCT DATA ─────────────────────────────────────────────────────────────
 const products = [
-{ id: 1, name: 'Essential Black Tee', category: 'tshirt', price: 1990, oldPrice: null, badge: 'null', img: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&q=80', colors: ['#000', '#fff', '#555'], sizes: ['XS','S','M','L','XL'], rating: 4.9, reviews: 128 },
-{ id: 2, name: 'Graphic Strike Tee', category: 'tshirt', price: 2490, oldPrice: 3490, badge: 'null', img: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&q=80', colors: ['#000', '#333'], sizes: ['S','M','L','XL','XXL'], rating: 4.7, reviews: 89 },
-{ id: 3, name: 'Slim Fit Chinos', category: 'trouser', price: 3990, oldPrice: null, badge: 'null', img: 'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=500&q=80', colors: ['#222', '#8B7355', '#1a1a2e'], sizes: ['28','30','32','34','36'], rating: 4.8, reviews: 203 },
-{ id: 4, name: 'Cargo Combat Pants', category: 'trouser', price: 4490, oldPrice: 5490, badge: 'null', img: 'https://images.unsplash.com/photo-1542272604-787c3835535d?w=500&q=80', colors: ['#000', '#556B2F'], sizes: ['30','32','34','36'], rating: 4.6, reviews: 76 },
+{ id: 1, name: 'Essential Black Tee', category: 'tshirt', price: 1990, oldPrice: null, badge: null, img: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&q=80', colors: ['#000', '#fff', '#555'], sizes: ['XS','S','M','L','XL'], rating: 4.9, reviews: 128 },
+{ id: 2, name: 'Graphic Strike Tee', category: 'tshirt', price: 2490, oldPrice: 3490, badge: null, img: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&q=80', colors: ['#000', '#333'], sizes: ['S','M','L','XL','XXL'], rating: 4.7, reviews: 89 },
+{ id: 3, name: 'Slim Fit Chinos', category: 'trouser', price: 3990, oldPrice: null, badge: null, img: 'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=500&q=80', colors: ['#222', '#8B7355', '#1a1a2e'], sizes: ['28','30','32','34','36'], rating: 4.8, reviews: 203 },
+{ id: 4, name: 'Cargo Combat Pants', category: 'trouser', price: 4490, oldPrice: 5490, badge: null, img: 'https://images.unsplash.com/photo-1542272604-787c3835535d?w=500&q=80', colors: ['#000', '#556B2F'], sizes: ['30','32','34','36'], rating: 4.6, reviews: 76 },
 { id: 5, name: 'Oxford Button-Down', category: 'sleeve', price: 2990, oldPrice: null, badge: null, img: 'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=500&q=80', colors: ['#fff', '#000', '#1a237e'], sizes: ['XS','S','M','L','XL','XXL'], rating: 4.9, reviews: 157 },
-{ id: 6, name: 'Bomber Field Shirt', category: 'sleeve', price: 4990, oldPrice: 6490, badge: 'null', img: 'https://images.unsplash.com/photo-1607345366928-199ea26cfe3e?w=500&q=80', colors: ['#000', '#4a4a4a'], sizes: ['S','M','L','XL'], rating: 4.7, reviews: 94 },
+{ id: 6, name: 'Bomber Field Shirt', category: 'sleeve', price: 4990, oldPrice: 6490, badge: null, img: 'https://images.unsplash.com/photo-1607345366928-199ea26cfe3e?w=500&q=80', colors: ['#000', '#4a4a4a'], sizes: ['S','M','L','XL'], rating: 4.7, reviews: 94 },
 { id: 7, name: 'Oversized Drop Tee', category: 'tshirt', price: 1890, oldPrice: null, badge: null, img: 'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=500&q=80', colors: ['#f5f5f5', '#000', '#ccc'], sizes: ['S','M','L','XL','XXL'], rating: 4.8, reviews: 210 },
-{ id: 8, name: 'Tapered Track Pants', category: 'trouser', price: 3490, oldPrice: 4490, badge: 'null', img: 'https://images.unsplash.com/photo-1594938298603-c8148c4b4f4e?w=500&q=80', colors: ['#000', '#1a1a1a'], sizes: ['S','M','L','XL'], rating: 4.5, reviews: 62 },
+{ id: 8, name: 'Tapered Track Pants', category: 'trouser', price: 3490, oldPrice: 4490, badge: null, img: 'https://images.unsplash.com/photo-1594938298603-c8148c4b4f4e?w=500&q=80', colors: ['#000', '#1a1a1a'], sizes: ['S','M','L','XL'], rating: 4.5, reviews: 62 },
 ];
 
 // ─── CART STATE ───────────────────────────────────────────────────────────────
@@ -2198,7 +2196,7 @@ function renderProducts(filter = 'all') {
 <div class="product-card fade-up" id="prod-${p.id}" onclick="openProduct(${p.id})" style="cursor:pointer;">      <div class="product-img-wrap">
         ${p.badge ? `<div class="product-badge ${p.badge === 'Sale' ? 'sale' : ''}">${p.badge}</div>` : ''}
 <img src="${p.img}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;display:block;" class="product-img" loading="lazy"><div class="product-actions">
-<button class="btn-add-cart" onclick="event.stopPropagation();addToCart(${p.id})">Add to Cart</button>         
+<button class="btn-add-cart" onclick="event.stopPropagation();openProduct(${p.id})">Add to Cart</button>
 <button class="btn-wishlist" onclick="event.stopPropagation();toggleWishlist(${p.id})">
 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
@@ -2769,17 +2767,18 @@ function closeCategory() {
   document.body.style.overflow = 'hidden';
 }
 const infoPages = {
-  shipping: { title: 'SHIPPING INFO', content: `<p>We deliver across Pakistan via trusted courier services.</p><ul style="padding-left:20px;margin-top:12px;line-height:2;"><li>Delivery time: 3–7 business days depending on your city</li><li>Delivery charges are confirmed via WhatsApp after placing your order</li><li>Same-day dispatch available for orders placed before 2PM</li><li>You will receive a tracking number once your order is dispatched</li><li>For any delivery queries, contact us on WhatsApp</li></ul>` },
-  returns: { title: 'RETURNS POLICY', content: `<p>We want you to be 100% satisfied with your purchase.</p><ul style="padding-left:20px;margin-top:12px;line-height:2;"><li>Returns accepted within 30 days of delivery</li><li>Item must be unused, unwashed, and in original condition</li><li>Contact us on WhatsApp with your order number to initiate a return</li><li>Exchange is available for size issues</li><li>Refunds are processed within 5–7 business days</li></ul>` },
-  track: { title: 'TRACK YOUR ORDER', content: `<p>To track your order:</p><ul style="padding-left:20px;margin-top:12px;line-height:2;"><li>You will receive a tracking number via WhatsApp once dispatched</li><li>Use the tracking number on the courier's website</li><li>For live updates, message us on WhatsApp with your order number</li><li>Orders are typically dispatched within 24 hours</li></ul>` },
-  faq: { title: 'FAQ', content: `<p><strong>Are all items authentic?</strong><br>Yes — every piece is 100% genuine. No fakes, ever.</p><p style="margin-top:16px;"><strong>Where do you source from?</strong><br>We source from Karachi lots — authentic pre-owned branded items including Nike, Adidas, Jordan, Stone Island and more.</p><p style="margin-top:16px;"><strong>What sizes do you carry?</strong><br>Sizes vary per item. Check the product page for available sizes.</p><p style="margin-top:16px;"><strong>Do you do COD?</strong><br>Yes, Cash on Delivery is available nationwide.</p><p style="margin-top:16px;"><strong>How do I place an order?</strong><br>Browse, add to cart, and checkout. Delivery charges will be confirmed via WhatsApp.</p>` },
+  shipping: { title: 'SHIPPING INFO', content: `<p>We deliver nationwide via trusted courier services.</p><ul style="padding-left:20px;margin-top:12px;line-height:2;"><li>Delivery time: 3–7 business days depending on your city</li><li>Delivery charges are confirmed via WhatsApp after placing your order</li><li>Same-day dispatch available for orders placed before 2PM</li><li>You will receive a tracking number once your order is dispatched</li><li>For any delivery queries, contact us on WhatsApp</li></ul>` },
+  faq: { title: 'FAQ', content: `<p><strong>Are all items authentic?</strong><br>Yes — every piece is 100% genuine branded. No fakes, ever.</p><p style="margin-top:16px;"><strong>What brands do you carry?</strong><br>We carry Nike, Adidas, Jordan, Stone Island, Ralph Lauren and more — all pre-owned and verified authentic.</p><p style="margin-top:16px;"><strong>What condition are the items in?</strong><br>All items are pre-owned but carefully checked and selected. Condition is described on each product page.</p><p style="margin-top:16px;"><strong>Do you do COD?</strong><br>Yes, Cash on Delivery is available nationwide.</p><p style="margin-top:16px;"><strong>How do I place an order?</strong><br>Browse, add to cart, and checkout. Delivery charges will be confirmed via WhatsApp.</p>` },
   contact: { title: 'CONTACT US', content: `<p>We'd love to hear from you!</p><ul style="padding-left:20px;margin-top:12px;line-height:2;"><li>📱 WhatsApp: +92 3XX XXXXXXX</li><li>📸 Instagram: @trojanpk</li><li>🕐 Response time: within a few hours</li><li>📦 For order issues, have your order number ready</li></ul>` },
-  about: { title: 'ABOUT TROJAN', content: `<p>Trojan is Karachi's premier pre-owned branded store.</p><p style="margin-top:16px;">We source authentic Nike, Adidas, Jordan, Stone Island, Ralph Lauren and more from Karachi lots — and sell them at unbeatable prices.</p><p style="margin-top:16px;">Every single piece is genuine. We have a strict no-fakes policy. What you see is what you get.</p><p style="margin-top:16px;">Our mission is to make premium branded fashion accessible to everyone in Pakistan.</p>` },
-  sustainability: { title: 'SUSTAINABILITY', content: `<p>At Trojan, sustainability is at the heart of what we do.</p><p style="margin-top:16px;">By selling pre-owned branded clothing, we extend the life of quality garments and reduce fashion waste. Every item we sell is one less item in a landfill.</p><p style="margin-top:16px;">Pre-owned is the most sustainable form of fashion — and we're proud to lead that movement in Pakistan.</p>` },
+  about: { title: 'ABOUT TROJAN', content: `<p>Trojan is a pre-owned branded store specialising in authentic streetwear and designer pieces.</p><p style="margin-top:16px;">We source genuine Nike, Adidas, Jordan, Stone Island, Ralph Lauren and more — and sell them at unbeatable prices.</p><p style="margin-top:16px;">Every single piece is verified authentic. We have a strict no-fakes policy. What you see is what you get.</p><p style="margin-top:16px;">Our mission is simple — make premium branded fashion accessible to everyone.</p>` },
+  sustainability: { title: 'SUSTAINABILITY', content: `<p>At Trojan, sustainability is built into everything we do.</p><p style="margin-top:16px;">By selling pre-owned branded clothing, we extend the life of quality garments and reduce fashion waste. Every item we sell is one less item in a landfill.</p><p style="margin-top:16px;">Pre-owned is the most sustainable form of fashion — and we're proud to be part of that movement.</p>` },
   careers: { title: 'CAREERS', content: `<p>Interested in joining the Trojan team?</p><p style="margin-top:16px;">We're always looking for passionate people who love fashion and want to be part of something exciting.</p><ul style="padding-left:20px;margin-top:12px;line-height:2;"><li>Social media & content creators</li><li>Sourcing & inventory management</li><li>Customer support</li></ul><p style="margin-top:16px;">Send your details to us on WhatsApp to apply.</p>` },
-  press: { title: 'PRESS', content: `<p>For press enquiries, collaborations, or media features, please get in touch.</p><p style="margin-top:16px;">We welcome coverage from fashion bloggers, journalists, and content creators interested in covering the pre-owned fashion scene in Pakistan.</p><p style="margin-top:16px;">Contact us via WhatsApp or Instagram for all press-related matters.</p>` },
+  press: { title: 'PRESS', content: `<p>For press enquiries, collaborations, or media features, please get in touch.</p><p style="margin-top:16px;">We welcome coverage from fashion bloggers, journalists, and content creators interested in the pre-owned fashion space.</p><p style="margin-top:16px;">Contact us via WhatsApp or Instagram for all press-related matters.</p>` },
   affiliates: { title: 'AFFILIATE PROGRAM', content: `<p>Earn with Trojan by joining our affiliate program.</p><ul style="padding-left:20px;margin-top:12px;line-height:2;"><li>Share your unique code with your followers</li><li>Earn commission on every sale made through your code</li><li>Open to anyone with an engaged audience</li><li>Influencers, bloggers, and content creators welcome</li></ul><p style="margin-top:16px;">Message us on WhatsApp to get started.</p>` },
   blog: { title: 'BLOG', content: `<p>Stay tuned for style guides, brand spotlights, and tips on how to style pre-owned branded pieces.</p><p style="margin-top:16px;">Our blog is coming soon. Follow us on Instagram for regular content in the meantime.</p>` },
+privacy: { title: 'PRIVACY POLICY', content: `<p>We take your privacy seriously.</p><ul style="padding-left:20px;margin-top:12px;line-height:2;"><li>We only collect information necessary to process your order</li><li>Your personal details are never sold or shared with third parties</li><li>Payment information is handled securely and never stored</li><li>We may contact you via WhatsApp or email regarding your order</li><li>You can request deletion of your data at any time by contacting us</li></ul>` },
+  terms: { title: 'TERMS OF USE', content: `<p>By using Trojan you agree to the following terms.</p><ul style="padding-left:20px;margin-top:12px;line-height:2;"><li>All items sold are pre-owned and described accurately</li><li>Images shown are of the actual item being sold</li><li>All sales are final unless item received differs from description</li><li>Cash on Delivery orders must be paid in full upon receipt</li><li>Trojan reserves the right to cancel any order at any time</li></ul>` },
+  cookies: { title: 'COOKIE SETTINGS', content: `<p>This website uses minimal cookies to function properly.</p><ul style="padding-left:20px;margin-top:12px;line-height:2;"><li>Essential cookies are used to keep your cart and session active</li><li>No tracking or advertising cookies are used</li><li>No third party cookies are set without your knowledge</li><li>By continuing to use this site you accept our cookie usage</li></ul>` },
 };
 
 function openInfo(page) {
