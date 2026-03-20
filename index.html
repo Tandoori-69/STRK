@@ -2197,9 +2197,6 @@ function renderProducts(filter = 'all') {
           <span>${p.oldPrice ? `<span class="price-sale">Rs. ${p.price.toLocaleString()}</span>` : `Rs. ${p.price.toLocaleString()}`}</span>
           ${p.oldPrice ? `<span class="price-old">Rs. ${p.oldPrice.toLocaleString()}</span>` : ''}
         </div>
-        <div class="product-colors">
-          ${p.colors.map(c => `<div class="color-dot" style="background:${c};"></div>`).join('')}
-        </div>
       </div>
     </div>
   `).join('');
@@ -2602,8 +2599,8 @@ function pdpAddCart(buyNow = false) {
   else cart.push({...p, qty: 1, size: ''});
   updateCartUI();
   showToast(`✓ ${p.name} (${pdpSelectedSize}) added!`);
-  if (buyNow) { closeProduct(); setTimeout(openCheckout, 300); }
-  else { closeProduct(); setTimeout(openCart, 300); }
+if (buyNow) { closeProduct(); setTimeout(openCheckout, 300); }
+  else { closeProduct(); showToast(`✓ ${p.name} added to cart!`); }
 }
 
 function pdpTab(btn, tabId) {
