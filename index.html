@@ -2446,15 +2446,8 @@ function placeOrder() {
   const items = cart.map(i => `${i.name} x${i.qty} — Rs. ${(i.price * i.qty).toLocaleString()}`).join('\n');
   const total = `Rs. ${getTotal().toLocaleString()}`;
 
-  emailjs.send('service_kh4v2no', 'template_dmxw4s2', {
-    order_num: orderNum,
-    customer_name: fn + ' ' + ln,
-    customer_email: email,
-    customer_phone: phone || 'Not provided',
-    address: `${addr}, ${city}, ${state} ${zip}, ${country}`,
-    items: items,
-    total: total
-  });
+  const body = encodeURIComponent(`Order: ${orderNum}\nCustomer: ${fn} ${ln}\nPhone: ${phone}\nEmail: ${email}\nAddress: ${addr}, ${city}, ${state} ${zip}\nItems: ${items}\nTotal: ${total}`);
+window.open(`mailto:sislams2022@gmail.com?subject=New Order ${orderNum}&body=${body}`);
 
   cart = [];
   updateCartUI();
