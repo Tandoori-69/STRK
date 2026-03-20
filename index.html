@@ -2117,10 +2117,7 @@ animation: marquee 22s linear infinite;
           <div class="order-summary">
             <div class="order-summary-title">Order Summary</div>
             <div id="orderSummaryItems"></div>
-            <div class="coupon-wrap">
-              <input type="text" class="coupon-input" id="couponCode" placeholder="COUPON CODE">
-              <button class="coupon-btn" onclick="applyCoupon()">Apply</button>
-            </div>
+           
             <div class="order-line"><span>Subtotal</span><span id="summarySubtotal">$0.00</span></div>
            <div class="order-line" id="discountLine" style="display:none;color:#cc0000;"><span>Discount (TROJAN20)</span><span id="summaryDiscount">-$0.00</span></div>
 <div class="order-total-line"><span>Total</span><span id="summaryTotal">$0.00</span></div>
@@ -2184,7 +2181,7 @@ function renderProducts(filter = 'all') {
 <div class="product-card fade-up" id="prod-${p.id}" onclick="openProduct(${p.id})" style="cursor:pointer;">      <div class="product-img-wrap">
         ${p.badge ? `<div class="product-badge ${p.badge === 'Sale' ? 'sale' : ''}">${p.badge}</div>` : ''}
 <img src="${p.img}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;display:block;" class="product-img" loading="lazy"><div class="product-actions">
-<button class="btn-add-cart" onclick="event.stopPropagation();openProduct(${p.id})">Add to Cart</button>
+<button class="btn-add-cart" onclick="event.stopPropagation();addToCart(${p.id})">Add to Cart</button>
 <button class="btn-wishlist" onclick="event.stopPropagation();toggleWishlist(${p.id})">
 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
@@ -2279,8 +2276,8 @@ function updateCartUI() {
         </div>
         <div>
           <div class="cart-item-name">${item.name}</div>
-          <div class="cart-item-meta">Size: ${item.size} · ${item.category === 'tshirt' ? 'T-Shirt' : item.category === 'trouser' ? 'Trouser' : 'Full Sleeve'}</div>
-          <button class="cart-remove" onclick="removeFromCart(${item.id})">Remove</button>
+<div class="cart-item-meta">${item.size ? 'Size: ' + item.size + ' · ' : ''}${item.category === 'tshirt' ? 'T-Shirt' : item.category === 'trouser' ? 'Trouser' : 'Full Sleeve'}</div>
+<button class="cart-remove" onclick="removeFromCart(${item.id})">Remove</button>
         </div>
         <div class="cart-item-price">Rs. ${(item.price * item.qty).toLocaleString()}</div>
       </div>
@@ -2340,8 +2337,7 @@ function updateOrderSummary() {
       </div>
       <div class="order-item-details">
         <div class="order-item-name">${item.name}</div>
-        <div class="order-item-variant">Size: ${item.size}</div>
-      </div>
+<div class="order-item-variant">${item.size ? 'Size: ' + item.size : ''}</div>      </div>
       <div class="order-item-price">Rs. ${(item.price * item.qty).toLocaleString()}</div>
     </div>
   `).join('');
@@ -2594,9 +2590,9 @@ function pdpQtyChange(d) {
 
 function pdpAddCart(buyNow = false) {
   const p = products.find(x => x.id === pdpCurrentId);
-  const existing = cart.find(i => i.id === p.id);
+const existing = cart.find(i => i.id === p.id);
   if (existing) existing.qty += 1;
-  else cart.push({...p, qty: 1, size: ''});
+  else cart.push({...p, qty: 1, size: p.sizes[0]});
   updateCartUI();
   showToast(`✓ ${p.name} (${pdpSelectedSize}) added!`);
 if (buyNow) { closeProduct(); setTimeout(openCheckout, 300); }
