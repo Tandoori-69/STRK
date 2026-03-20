@@ -1705,9 +1705,6 @@ animation: marquee 22s linear infinite;
   }
 </style>
 
- <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-<script>emailjs.init('vSgHxWvwJJokjf9kK');</script>
-
 </head>
 <body>
 
@@ -2514,17 +2511,26 @@ async function subscribeNewsletter() {
   const email = document.querySelector('.newsletter-input').value.trim();
   if (!email) { showToast('Please enter your email'); return; }
   try {
-    await emailjs.send('service_kh4v2no', 'template_hfd3kfj', {
-      to_email: email,
-      email: email
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+        access_key: '086c8be7-0669-4787-aae1-ba375e64d95d',
+        subject: 'New Newsletter Subscriber — Trojan',
+        from_name: 'Trojan Store',
+        subscriber_email: email
+      })
     });
-    showToast('✓ Subscribed! Welcome aboard.');
-    document.querySelector('.newsletter-input').value = '';
+    if (res.ok) {
+      showToast('✓ Subscribed! Welcome aboard.');
+      document.querySelector('.newsletter-input').value = '';
+    } else {
+      showToast('Something went wrong, try again');
+    }
   } catch {
     showToast('Something went wrong, try again');
   }
 }
-
 // TOAST
 function showToast(msg) {
   const toast = document.getElementById('toast');
