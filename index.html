@@ -1704,6 +1704,10 @@ animation: marquee 22s linear infinite;
     .feature-strip { grid-template-columns: 1fr; }
   }
 </style>
+
+ <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>emailjs.init('vSgHxWvwJJokjf9kK');</script>
+
 </head>
 <body>
 
@@ -2428,6 +2432,30 @@ function placeOrder() {
   document.getElementById('successOrderNum').textContent = `Order #${orderNum}`;
   document.getElementById('checkoutBody').style.display = 'none';
   document.getElementById('successScreen').classList.add('show');
+
+  const fn = document.getElementById('firstName').value;
+  const ln = document.getElementById('lastName').value;
+  const email = document.getElementById('email').value;
+  const phone = document.getElementById('phone').value;
+  const addr = document.getElementById('address').value;
+  const city = document.getElementById('city').value;
+  const state = document.getElementById('state').value;
+  const zip = document.getElementById('zip').value;
+  const country = document.getElementById('country').options[document.getElementById('country').selectedIndex]?.text;
+
+  const items = cart.map(i => `${i.name} x${i.qty} — Rs. ${(i.price * i.qty).toLocaleString()}`).join('\n');
+  const total = `Rs. ${getTotal().toLocaleString()}`;
+
+  emailjs.send('service_kh4v2no', 'template_dmxw4s2', {
+    order_num: orderNum,
+    customer_name: fn + ' ' + ln,
+    customer_email: email,
+    customer_phone: phone || 'Not provided',
+    address: `${addr}, ${city}, ${state} ${zip}, ${country}`,
+    items: items,
+    total: total
+  });
+
   cart = [];
   updateCartUI();
   showToast('🎉 Order placed successfully!');
@@ -2478,6 +2506,19 @@ function applyCoupon() {
 // NEWSLETTER
 async function subscribeNewsletter() {
   const email = document.querySelector('.newsletter-input').value.trim();
+  if (!email) { showToast('Please enter your email'); return; }
+  try {
+    await emailjs.send('service_kh4v2no', 'template_hfd3kfj', {
+      to_email: email,
+      email: email
+    });
+    showToast('✓ Subscribed! Welcome aboard.');
+    document.querySelector('.newsletter-input').value = '';
+  } catch {
+    showToast('Something went wrong, try again');
+  }
+}
+ const email = document.querySelector('.newsletter-input').value.trim();
   if (!email) { showToast('Please enter your email'); return; }
   try {
     const res = await fetch('https://formspree.io/f/meerdjjj', {
