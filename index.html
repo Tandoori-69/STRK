@@ -2230,7 +2230,7 @@ function addToCart(productId) {
   if (existing) {
     existing.qty++;
   } else {
-    cart.push({ ...product, qty: 1, size: product.sizes[2] || product.sizes[0] });
+cart.push({ ...product, qty: 1, size: product.sizes[0] });
   }
   updateCartUI();
   showToast(`${product.name} added to cart!`);
