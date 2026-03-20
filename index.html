@@ -2545,10 +2545,6 @@ document.getElementById('pdpDots').innerHTML = pdpImgs.map((_,i) =>
     ? `<span style="font-family:var(--font-condensed);font-size:30px;font-weight:700;color:#cc0000;">Rs. ${p.price.toLocaleString()}</span><span style="font-family:var(--font-condensed);font-size:20px;color:#999;text-decoration:line-through;">Rs. ${p.oldPrice.toLocaleString()}</span><span style="font-family:var(--font-condensed);font-size:12px;font-weight:700;background:#fff0f0;color:#cc0000;padding:4px 10px;">${Math.round((p.oldPrice-p.price)/p.oldPrice*100)}% OFF</span>`
     : `<span style="font-family:var(--font-condensed);font-size:30px;font-weight:700;">Rs. ${p.price.toLocaleString()}</span>`;
  
-  // Sizes
-  document.getElementById('pdpSizesEl').innerHTML = p.sizes.map(s => `
-    <button onclick="pdpSelectSize('${s}',this)" style="min-width:52px;height:52px;border:1.5px solid #e8e8e8;background:none;cursor:pointer;font-family:var(--font-condensed);font-size:13px;font-weight:600;padding:0 8px;transition:all 0.2s;">${s}</button>`).join('');
-
   // Desc
   document.getElementById('pdpDesc').innerHTML = d.desc;
 
@@ -2598,11 +2594,10 @@ function pdpQtyChange(d) {
 }
 
 function pdpAddCart(buyNow = false) {
-  if (!pdpSelectedSize) { document.getElementById('pdpSizeErr').style.display = 'block'; return; }
   const p = products.find(x => x.id === pdpCurrentId);
-  const existing = cart.find(i => i.id === p.id && i.size === pdpSelectedSize);
-  if (existing) existing.qty += pdpQty;
-  else cart.push({...p, qty: pdpQty, size: pdpSelectedSize});
+  const existing = cart.find(i => i.id === p.id);
+  if (existing) existing.qty += 1;
+  else cart.push({...p, qty: 1, size: ''});
   updateCartUI();
   showToast(`✓ ${p.name} (${pdpSelectedSize}) added!`);
   if (buyNow) { closeProduct(); setTimeout(openCheckout, 300); }
@@ -2845,12 +2840,6 @@ function closeInfo() {
       <div id="pdpCatLabel" style="font-family:var(--font-condensed);font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#999;margin-bottom:10px;"></div>
       <h1 id="pdpNameEl" style="font-family:'Bebas Neue',sans-serif;font-size:52px;letter-spacing:1px;line-height:1;margin-bottom:14px;"></h1>
       <div id="pdpPriceRow" style="display:flex;align-items:center;gap:16px;margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid #e8e8e8;"></div>
-
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
-        <div style="font-family:var(--font-condensed);font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;">SELECT SIZE</div>
-      </div>
-      <div id="pdpSizesEl" style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px;"></div>
-      <div id="pdpSizeErr" style="display:none;color:#cc0000;font-family:var(--font-condensed);font-size:11px;letter-spacing:1px;margin-bottom:12px;">⚠ Please select a size</div>
 
       <div style="display:flex;gap:10px;margin-bottom:12px;">
         <button onclick="pdpAddCart()" style="flex:1;background:#000;color:#fff;border:none;padding:17px;font-family:var(--font-condensed);font-size:13px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;cursor:pointer;">Add to Cart</button>
