@@ -2476,10 +2476,25 @@ function applyCoupon() {
 }
 
 // NEWSLETTER
-function subscribeNewsletter() {
-  showToast('✓ You\'re subscribed! Welcome aboard.');
+async function subscribeNewsletter() {
+  const email = document.querySelector('.newsletter-input').value.trim();
+  if (!email) { showToast('Please enter your email'); return; }
+  try {
+    const res = await fetch('https://formspree.io/f/meerdjjj', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email })
+    });
+    if (res.ok) {
+      showToast('✓ Subscribed! Welcome aboard.');
+      document.querySelector('.newsletter-input').value = '';
+    } else {
+      showToast('Something went wrong, try again');
+    }
+  } catch {
+    showToast('Something went wrong, try again');
+  }
 }
-
 // TOAST
 function showToast(msg) {
   const toast = document.getElementById('toast');
