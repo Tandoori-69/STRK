@@ -2529,8 +2529,12 @@ function openProduct(id) {
   document.getElementById('pdpBreadName').textContent = p.name;
   document.getElementById('pdpCatLabel').textContent = p.category==='tshirt'?'T-Shirts':p.category==='trouser'?'Trousers':'Full Sleeves';
   document.getElementById('pdpNameEl').textContent = p.name;
-document.getElementById('pdpMainImg').src = d.imgs[0];
- 
+pdpImgs = d.imgs.slice(0, 3);
+pdpImgIndex = 0;
+document.getElementById('pdpMainImg').src = pdpImgs[0];
+document.getElementById('pdpDots').innerHTML = pdpImgs.map((_,i) =>
+  `<div class="pdp-dot" style="width:9px;height:9px;border-radius:50%;background:${i===0?'#000':'rgba(0,0,0,0.3)'};cursor:pointer;" onclick="pdpImgIndex=${i-1};pdpSlide(1)"></div>`
+).join(''); 
  // Badge
   const badge = document.getElementById('pdpBadgeEl');
   if (p.badge) { badge.textContent = p.badge; badge.style.display='block'; badge.style.background = p.badge==='Sale' ? '#cc0000' : '#000'; }
@@ -2541,10 +2545,6 @@ document.getElementById('pdpMainImg').src = d.imgs[0];
     ? `<span style="font-family:var(--font-condensed);font-size:30px;font-weight:700;color:#cc0000;">Rs. ${p.price.toLocaleString()}</span><span style="font-family:var(--font-condensed);font-size:20px;color:#999;text-decoration:line-through;">Rs. ${p.oldPrice.toLocaleString()}</span><span style="font-family:var(--font-condensed);font-size:12px;font-weight:700;background:#fff0f0;color:#cc0000;padding:4px 10px;">${Math.round((p.oldPrice-p.price)/p.oldPrice*100)}% OFF</span>`
     : `<span style="font-family:var(--font-condensed);font-size:30px;font-weight:700;">Rs. ${p.price.toLocaleString()}</span>`;
  
-  // Colors
-  document.getElementById('pdpColorsEl').innerHTML = p.colors.map((c,i) => `
-    <button onclick="this.parentNode.querySelectorAll('.pdp-cbtn').forEach(b=>b.style.border='3px solid transparent');this.style.border='3px solid #000';" class="pdp-cbtn" style="width:32px;height:32px;border-radius:50%;background:${c};border:${i===0?'3px solid #000':'3px solid transparent'};cursor:pointer;"></button>`).join('');
-
   // Sizes
   document.getElementById('pdpSizesEl').innerHTML = p.sizes.map(s => `
     <button onclick="pdpSelectSize('${s}',this)" style="min-width:52px;height:52px;border:1.5px solid #e8e8e8;background:none;cursor:pointer;font-family:var(--font-condensed);font-size:13px;font-weight:600;padding:0 8px;transition:all 0.2s;">${s}</button>`).join('');
@@ -2565,6 +2565,19 @@ document.getElementById('pdpMainImg').src = d.imgs[0];
   document.getElementById('pdpPage').style.display = 'block';
   document.getElementById('pdpPage').scrollTop = 0;
   document.body.style.overflow = 'hidden';
+}
+
+let pdpImgs = [];
+let pdpImgIndex = 0;
+
+function pdpSlide(dir) {
+  pdpImgIndex = (pdpImgIndex + dir + pdpImgs.length) % pdpImgs.length;
+  const img = document.getElementById('pdpMainImg');
+  img.style.opacity = '0';
+  setTimeout(() => { img.src = pdpImgs[pdpImgIndex]; img.style.opacity = '1'; }, 150);
+  document.querySelectorAll('.pdp-dot').forEach((d,i) => {
+    d.style.background = i === pdpImgIndex ? '#000' : 'rgba(0,0,0,0.3)';
+  });
 }
  
 function closeProduct() {
@@ -2821,7 +2834,10 @@ function closeInfo() {
     <div>
 <div style="aspect-ratio:4/5;overflow:hidden;background:#f5f5f5;margin-bottom:12px;position:relative;">
   <span id="pdpBadgeEl" style="display:none;position:absolute;top:20px;left:20px;background:#000;color:#fff;font-family:var(--font-condensed);font-size:11px;font-weight:700;letter-spacing:2px;padding:6px 12px;z-index:2;"></span>
-  <img id="pdpMainImg" src="" style="width:100%;height:100%;object-fit:cover;">
+  <img id="pdpMainImg" src="" style="width:100%;height:100%;object-fit:cover;transition:opacity 0.3s ease;">
+  <button onclick="pdpSlide(-1)" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.45);border:none;width:44px;height:44px;font-size:26px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:3;color:white;border-radius:4px;">‹</button>
+  <button onclick="pdpSlide(1)" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.45);border:none;width:44px;height:44px;font-size:26px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:3;color:white;border-radius:4px;">›</button>
+  <div id="pdpDots" style="position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:3;"></div>
 </div>
     </div>
     <!-- INFO -->
@@ -2829,9 +2845,6 @@ function closeInfo() {
       <div id="pdpCatLabel" style="font-family:var(--font-condensed);font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#999;margin-bottom:10px;"></div>
       <h1 id="pdpNameEl" style="font-family:'Bebas Neue',sans-serif;font-size:52px;letter-spacing:1px;line-height:1;margin-bottom:14px;"></h1>
       <div id="pdpPriceRow" style="display:flex;align-items:center;gap:16px;margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid #e8e8e8;"></div>
-
-      <div style="font-family:var(--font-condensed);font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:12px;">COLOR</div>
-      <div id="pdpColorsEl" style="display:flex;gap:10px;margin-bottom:28px;"></div>
 
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
         <div style="font-family:var(--font-condensed);font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;">SELECT SIZE</div>
