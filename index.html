@@ -2446,9 +2446,22 @@ function placeOrder() {
   const items = cart.map(i => `${i.name} x${i.qty} — Rs. ${(i.price * i.qty).toLocaleString()}`).join('\n');
   const total = `Rs. ${getTotal().toLocaleString()}`;
 
-  const body = encodeURIComponent(`Order: ${orderNum}\nCustomer: ${fn} ${ln}\nPhone: ${phone}\nEmail: ${email}\nAddress: ${addr}, ${city}, ${state} ${zip}\nItems: ${items}\nTotal: ${total}`);
-window.open(`mailto:sislams2022@gmail.com?subject=New Order ${orderNum}&body=${body}`);
-
+  fetch('https://api.web3forms.com/submit', {
+  method: 'POST',
+  headers: {'Content-Type':'application/json'},
+  body: JSON.stringify({
+    access_key: '086c8be7-0669-4787-aae1-ba375e64d95d',
+    subject: `New Order — ${orderNum}`,
+    from_name: 'Trojan Store',
+    order: orderNum,
+    customer: `${fn} ${ln}`,
+    phone: phone || 'Not provided',
+    email: email,
+    address: `${addr}, ${city}, ${state} ${zip}, ${country}`,
+    items: items,
+    total: total
+  })
+});
   cart = [];
   updateCartUI();
   showToast('🎉 Order placed successfully!');
